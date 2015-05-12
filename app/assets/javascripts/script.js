@@ -22,4 +22,15 @@ $(document).ready(function() {
       }
     }
   });
+
+  $("#skill-form").validate({
+    rules: {
+      "skill[name]": {
+          required: true
+      },
+      "skill[description]": {
+        required: true
+      }
+    }
+  });
 });

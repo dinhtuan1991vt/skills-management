@@ -25,6 +25,19 @@ en:
   save: "Save"
   cancel: "Cancel"
 
+  skills:
+    index:
+      title: "Skills"
+      create: "Add a new skill"
+      name: "Name"
+      description: "Description"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this skill?"
+    new:
+      title: "New skill"
+    edit:
+      title: "Edit skill"
+
   skill_categories:
     index:
       title: "Skill categories"

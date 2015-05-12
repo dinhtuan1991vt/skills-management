@@ -1,6 +1,6 @@
 %tr
   %td
-    = skill_category.name
+    = link_to skill_category.name, skill_category_skills_path(skill_category)
   %td
     = link_to edit_skill_category_path(skill_category) do
       %span.glyphicon.glyphicon-edit

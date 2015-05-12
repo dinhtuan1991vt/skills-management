@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :locations
 
   resources :skill_categories do
-    resources :skill
+    resources :skills
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
