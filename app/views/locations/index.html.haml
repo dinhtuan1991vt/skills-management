@@ -1,0 +1,12 @@
+%h3 Locations
+= link_to 'Add a new location', new_location_path, class: "btn btn-danger new-item"
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Latitude
+      %th Longitude
+      %th Actions
+  %tbody
+    = render @locations

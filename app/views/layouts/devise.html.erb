@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skills Management</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'jquery.validate.min', 'additional-methods.min' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <% if notice %>
+    <p class="alert alert-info notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container text-center">
+            @Copyright 2015
+        </div>
+    </nav>
+</body>
+</html>

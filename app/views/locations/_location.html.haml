@@ -1,0 +1,14 @@
+%tr
+  %td
+    = location.name
+  %td
+    = location.latitude
+  %td
+    = location.longitude
+  %td
+    = link_to edit_location_path(location) do
+      %span.glyphicon.glyphicon-edit
+    = link_to location, method: :delete, data: { confirm: 'Are you sure?' } do
+      %span.glyphicon.glyphicon-trash
+
+
