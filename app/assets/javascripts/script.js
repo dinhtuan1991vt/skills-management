@@ -14,4 +14,12 @@ $(document).ready(function() {
       }
     }
   });
+
+  $("#skill-category-form").validate({
+    rules: {
+      "skill_category[name]": {
+        required: true
+      }
+    }
+  });
 });

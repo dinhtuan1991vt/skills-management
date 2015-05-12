@@ -1,0 +1,8 @@
+%tr
+  %td
+    = skill_category.name
+  %td
+    = link_to edit_skill_category_path(skill_category) do
+      %span.glyphicon.glyphicon-edit
+    = link_to skill_category, method: :delete, data: { confirm: t('skill_categories.index.delete_confirm') } do
+      %span.glyphicon.glyphicon-trash

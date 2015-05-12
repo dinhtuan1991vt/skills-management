@@ -1,0 +1,16 @@
+%h3
+  = t('.title')
+= link_to t('.create'), new_skill_category_path, class: "btn btn-danger new-item"
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        = t('.name')
+      %th
+        = t('.actions')
+  %tbody
+    = render @categories
+
+%div.digg_pagination
+  = will_paginate @categories
