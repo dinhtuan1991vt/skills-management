@@ -1,6 +1,4 @@
 .sidebar
   %ul
-    %li
-      = link_to t('locations.index.title'), locations_path
-    %li
-      = link_to t('skill_categories.index.title'), skill_categories_path
+    = render_menu_item(locations_path, t('locations.index.title'))
+    = render_menu_item(skill_categories_path, t('skill_categories.index.title'))
