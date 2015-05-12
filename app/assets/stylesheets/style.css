@@ -4,5 +4,17 @@ body {
 }
 
 .navbar-fixed-bottom {
-  line-height: 50px;
+  line-height: 50px;, html: { class: "form-horizontal"}
+}
+
+.panel-body {
+  padding-top:30px
+}
+
+.input-group.space-below {
+  margin-bottom: 25px;
+}
+
+.devise-links {
+  border-top: 1px solid#888; padding-top:15px;
 }
