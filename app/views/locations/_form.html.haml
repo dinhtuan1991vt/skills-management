@@ -1,20 +1,20 @@
 = form_for @location, html: {class: "form-horizontal", id: "location-form"} do |f|
   %div.form-group
-    = f.label :name, class: "col-sm-2 control-label"
+    = f.label :name, t('locations.index.name'), class: "col-sm-2 control-label"
     %div.col-sm-4
       = f.text_field :name, class: "form-control"
 
   %div.form-group
-    = f.label :latitude, class: "col-sm-2 control-label"
+    = f.label :latitude, t('locations.index.latitude'), class: "col-sm-2 control-label"
     %div.col-sm-4
       = f.text_field :latitude, class: "form-control"
 
   %div.form-group
-    = f.label :longitude, class: "col-sm-2 control-label"
+    = f.label :longitude, t('locations.index.longitude'), class: "col-sm-2 control-label"
     %div.col-sm-4
       = f.text_field :longitude, class: "form-control"
 
   %div.form-group
     %div.col-sm-offset-2.col-sm-4
-      = button_to 'Save', @article, class: "btn btn-primary"
-      = link_to 'Cancel', locations_path, class: "btn btn-default"
+      = button_to t('save'), @article, class: "btn btn-primary"
+      = link_to t('cancel'), locations_path, class: "btn btn-default"

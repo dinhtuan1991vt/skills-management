@@ -20,4 +20,22 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title: "Skills Management"
+  logout: "Log out"
+  save: "Save"
+  cancel: "Cancel"
+
+  locations:
+    index:
+      title: "Locations"
+      new_location: "Add a new location"
+      name: "Name"
+      latitude: "Latitude"
+      longitude: "Longitude"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete?"
+    new:
+      title: "New location"
+    edit:
+      title: "Edit location"
+

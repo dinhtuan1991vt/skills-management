@@ -8,7 +8,7 @@
   %td
     = link_to edit_location_path(location) do
       %span.glyphicon.glyphicon-edit
-    = link_to location, method: :delete, data: { confirm: 'Are you sure?' } do
+    = link_to location, method: :delete, data: { confirm: t('locations.index.delete_confirm') } do
       %span.glyphicon.glyphicon-trash
 
 

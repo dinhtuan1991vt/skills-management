@@ -1,12 +1,17 @@
-%h3 Locations
-= link_to 'Add a new location', new_location_path, class: "btn btn-danger new-item"
+%h3
+  = t('.title')
+= link_to t('.new_location'), new_location_path, class: "btn btn-danger new-item"
 
 %table.table.table-bordered.table-striped
   %thead
     %tr
-      %th Name
-      %th Latitude
-      %th Longitude
-      %th Actions
+      %th
+        = t('.name')
+      %th
+        = t('.latitude')
+      %th
+        = t('.longitude')
+      %th
+        = t('.actions')
   %tbody
     = render @locations
