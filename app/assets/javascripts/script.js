@@ -1,4 +1,8 @@
 $(document).on('page:change', function() {
+  $(".datepicker").datepicker({
+    format: 'yyyy-mm-dd',
+  });
+
   $("#location-form").validate({
     rules: {
       "location[latitude]": {
@@ -25,5 +29,10 @@ $(document).on('page:change', function() {
       }
     }
   });
+
+
+  $("#qualification-form").validate();
+
+
 
 });

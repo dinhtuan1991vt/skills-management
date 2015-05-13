@@ -76,6 +76,22 @@ en:
     edit:
       title: "Edit role"
 
+  qualifications:
+    index:
+      title: "Qualifications"
+      create: "Add a new qualification"
+      name: "Name"
+      assigned_to: "Assigned to"
+      status: "Status"
+      from_date: "From date"
+      to_date: "To date"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this qualification?"
+    new:
+      title: "New qualification"
+    edit:
+      title: "Edit qualification"
+
   users:
     index:
       title: "Users"

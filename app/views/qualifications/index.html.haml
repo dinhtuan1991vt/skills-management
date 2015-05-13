@@ -1,0 +1,24 @@
+%h3
+  = t('.title')
+= link_to t('.create'), new_qualification_path, class: "btn btn-danger new-item"
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        = t('.name')
+      %th
+        = t('.assigned_to')
+      %th
+        = t('.status')
+      %th
+        = t('.from_date')
+      %th
+        = t('.to_date')
+      %th
+        = t('.actions')
+  %tbody
+    = render @qualifications
+
+%div.digg_pagination
+  = will_paginate @qualifications

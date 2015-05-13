@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511103512) do
+ActiveRecord::Schema.define(version: 20150513081507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20150511103512) do
     t.decimal "latitude"
     t.decimal "longitude"
   end
+
+  create_table "qualifications", force: :cascade do |t|
+    t.string  "name"
+    t.string  "status"
+    t.string  "string"
+    t.date    "from_date"
+    t.date    "to_date"
+    t.integer "user_id"
+  end
+
+  add_index "qualifications", ["user_id"], name: "index_qualifications_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -93,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150511103512) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "qualifications", "users"
   add_foreign_key "skills", "skill_categories"
   add_foreign_key "users", "locations"
   add_foreign_key "users", "teams"

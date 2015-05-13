@@ -8,8 +8,17 @@ class User < ActiveRecord::Base
   validates :first_name, :sur_name, presence: true
   belongs_to :location
   belongs_to :team
+  has_many :qualifications
 
   def active_for_authentication?
     super && status?
+  end
+
+  def self.statuses
+    [['Enabled', true], ['Disabled', false]]
+  end
+
+  def full_name
+    first_name + ' ' + sur_name
   end
 end

@@ -2,6 +2,8 @@
   %td
     = user.email
   %td
+    = user.full_name
+  %td
     = user.team.name if !user.team.nil?
   %td
     = user.location.name if !user.location.nil?

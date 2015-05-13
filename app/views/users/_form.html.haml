@@ -37,7 +37,7 @@
   %div.form-group
     = f.label :status, t('users.index.status'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.select :status, [['Enabled', true], ['Disabled', false]], {}, {class: "form-control"}
+      = f.select :status, User.statuses, {}, {class: "form-control"}
 
   %div.form-group
     %div.col-sm-offset-2.col-sm-4
