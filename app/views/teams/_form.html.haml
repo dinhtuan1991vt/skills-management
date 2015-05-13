@@ -1,0 +1,15 @@
+= form_for @team , html: {class: "form-horizontal", id: "team-form"} do |f|
+  %div.form-group
+    = f.label :name, t('teams.index.name'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.text_field :name, class: "form-control"
+
+  %div.form-group
+    = f.label :parent_id, t('teams.index.parent'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = collection_select(:team, :parent_id, Team.all, :id, :name, {selected: @team.parent_id, prompt: true}, {class: "form-control"})
+
+  %div.form-group
+    %div.col-sm-offset-2.col-sm-4
+      = button_to t('save'), @team, class: "btn btn-primary"
+      = link_to t('cancel'), teams_path, class: "btn btn-default"

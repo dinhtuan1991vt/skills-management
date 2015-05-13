@@ -1,0 +1,8 @@
+%tr
+  %td
+    = team.name
+  %td
+    = link_to edit_team_path(team) do
+      %span.glyphicon.glyphicon-edit
+    = link_to team, method: :delete, data: { confirm: t('teams.index.delete_confirm') } do
+      %span.glyphicon.glyphicon-trash

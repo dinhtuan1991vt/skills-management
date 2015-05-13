@@ -46,11 +46,19 @@ en:
       actions: "Actions"
       delete_confirm: "Are you sure to delete this category?"
       parent: "Parent category"
-      select_parent: "Select parent category"
     new:
       title: "New skill category"
     edit:
       title: "Edit skill category"
+
+  teams:
+    index:
+      title: "Teams"
+      create: "Add a new team"
+      name: "Name"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this team?"
+      parent: "Parent team"
 
   locations:
     index:
