@@ -23,6 +23,14 @@ $(document).ready(function() {
     }
   });
 
+  $("#team-form").validate({
+    rules: {
+      "team[name]": {
+        required: true
+      }
+    }
+  });
+
   $("#skill-form").validate({
     rules: {
       "skill[name]": {
