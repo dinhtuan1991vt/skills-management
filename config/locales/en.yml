@@ -86,6 +86,7 @@ en:
       first_name: "First name"
       sur_name: "Surname"
       location: "Location"
+      team: "Team"
       status: "Status"
       actions: "Actions"
       delete_confirm: "Are you sure to delete this user?"

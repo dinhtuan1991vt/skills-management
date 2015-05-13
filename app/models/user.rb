@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, :sur_name, presence: true
   belongs_to :location
+  belongs_to :team
 
   def active_for_authentication?
     super && status?
