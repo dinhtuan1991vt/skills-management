@@ -59,6 +59,10 @@ en:
       actions: "Actions"
       delete_confirm: "Are you sure to delete this team?"
       parent: "Parent team"
+    new:
+      title: "New team"
+    edit:
+      title: "Edit team"
 
   locations:
     index:
