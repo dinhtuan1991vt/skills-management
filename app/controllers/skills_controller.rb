@@ -1,4 +1,5 @@
 class SkillsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_skill, only: [:edit, :update, :destroy]
   before_action :set_category
 

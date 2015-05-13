@@ -1,0 +1,8 @@
+%tr
+  %td
+    = user.email
+  %td
+    = link_to edit_user_path(user) do
+      %span.glyphicon.glyphicon-edit
+    = link_to user, method: :delete, data: { confirm: t('users.index.delete_confirm') } do
+      %span.glyphicon.glyphicon-trash

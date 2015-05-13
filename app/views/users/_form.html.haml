@@ -1,0 +1,40 @@
+= form_for @user, html: {class: "form-horizontal", id: "user-form"} do |f|
+  %div.form-group
+    = f.label :email, t('users.index.email'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.email_field :email, class: "form-control", required: true
+
+  %div.form-group
+    = f.label :password, t('users.index.password'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.password_field :password, class: "form-control", required: true
+
+  %div.form-group
+    = f.label :password_confirmation, t('users.index.password_confirmation'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.password_field :password_confirmation, class: "form-control", required: true
+
+  %div.form-group
+    = f.label :first_name, t('users.index.first_name'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.text_field :first_name, class: "form-control", required: true
+
+  %div.form-group
+    = f.label :sur_name, t('users.index.sur_name'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.text_field :sur_name, class: "form-control", required: true
+
+  %div.form-group
+    = f.label :location_id, t('users.index.location'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = collection_select(:user, :location_id, Location.all, :id, :name, {prompt: true}, {class: "form-control"})
+
+  %div.form-group
+    = f.label :status, t('users.index.status'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.select :status, [['Enabled', true], ['Disabled', false]], {}, {class: "form-control"}
+
+  %div.form-group
+    %div.col-sm-offset-2.col-sm-4
+      = button_to t('save'), @user, class: "btn btn-primary"
+      = link_to t('cancel'), users_path, class: "btn btn-default"

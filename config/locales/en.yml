@@ -76,6 +76,24 @@ en:
     edit:
       title: "Edit role"
 
+  users:
+    index:
+      title: "Users"
+      create: "Add a new user"
+      email: "Email"
+      password: "Password"
+      password_confirmation: "Password confirmation"
+      first_name: "First name"
+      sur_name: "Surname"
+      location: "Location"
+      status: "Status"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this user?"
+    new:
+      title: "New user"
+    edit:
+      title: "Edit user"
+
   locations:
     index:
       title: "Locations"

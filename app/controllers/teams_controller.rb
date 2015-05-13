@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @teams = Team.order("id desc").paginate(:page => params[:page], :per_page => 10)

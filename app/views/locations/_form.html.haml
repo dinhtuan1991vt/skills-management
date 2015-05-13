@@ -2,17 +2,17 @@
   %div.form-group
     = f.label :name, t('locations.index.name'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.text_field :name, class: "form-control"
+      = f.text_field :name, class: "form-control", required: true
 
   %div.form-group
     = f.label :latitude, t('locations.index.latitude'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.text_field :latitude, class: "form-control"
+      = f.text_field :latitude, class: "form-control", required: true
 
   %div.form-group
     = f.label :longitude, t('locations.index.longitude'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.text_field :longitude, class: "form-control"
+      = f.text_field :longitude, class: "form-control", required: true
 
   %div.form-group
     %div.col-sm-offset-2.col-sm-4
