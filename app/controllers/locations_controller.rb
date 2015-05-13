@@ -1,23 +1,14 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location, only: [:edit, :update, :destroy]
 
-  # GET /locations
-  # GET /locations.json
   def index
     @locations = Location.order("id desc").paginate(:page => params[:page], :per_page => 10)
   end
 
-  # GET /locations/1
-  # GET /locations/1.json
-  def show
-  end
-
-  # GET /locations/new
   def new
     @location = Location.new
   end
 
-  # GET /locations/1/edit
   def edit
   end
 

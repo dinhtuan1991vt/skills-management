@@ -1,0 +1,16 @@
+%h3
+  = t('.title')
+= link_to t('.create'), new_role_path, class: "btn btn-danger new-item"
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th
+        = t('.name')
+      %th
+        = t('.actions')
+  %tbody
+    = render @roles
+
+%div.digg_pagination
+  = will_paginate @roles

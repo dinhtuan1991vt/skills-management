@@ -1,0 +1,8 @@
+%tr
+  %td
+    = role.name
+  %td
+    = link_to edit_role_path(role) do
+      %span.glyphicon.glyphicon-edit
+    = link_to role, method: :delete, data: { confirm: t('roles.index.delete_confirm') } do
+      %span.glyphicon.glyphicon-trash

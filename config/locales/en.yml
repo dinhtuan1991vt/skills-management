@@ -64,6 +64,18 @@ en:
     edit:
       title: "Edit team"
 
+  roles:
+    index:
+      title: "Roles"
+      create: "Add a new role"
+      name: "Name"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this role?"
+    new:
+      title: "New role"
+    edit:
+      title: "Edit role"
+
   locations:
     index:
       title: "Locations"
