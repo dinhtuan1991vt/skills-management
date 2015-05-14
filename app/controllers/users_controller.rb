@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    authorize! :create, @user
 
     respond_to do |format|
       if @user.save

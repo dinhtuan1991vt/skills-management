@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
 
   def index
     @teams = Team.order("id desc").paginate(:page => params[:page], :per_page => 10)
@@ -12,6 +12,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    authorize! :create, @team
 
     respond_to do |format|
       if @team.save
@@ -45,7 +46,7 @@ class TeamsController < ApplicationController
     end
 
     def team_params
-      params.require(:team).permit(:name, :parent_id)
+      params.require(:team).permit(:name)
     end
 
 end

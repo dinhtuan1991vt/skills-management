@@ -33,8 +33,9 @@ $(document).on('page:change', function() {
 
   $("#qualification-form").validate();
 
-  $('#locations-table').dataTable({
-     ajax: $('#locations-table').data('source'),
+  function setDatatable(tableId) {
+    $(tableId).dataTable({
+     ajax: $(tableId).data('source'),
      pagingType: 'full_numbers',
      serverSide: true,
      responsive: true,
@@ -43,5 +44,9 @@ $(document).on('page:change', function() {
       "orderable": false
      }]
   });
+  }
+
+  setDatatable("#locations-table");
+  setDatatable("#skill-categories-table")
 
 });

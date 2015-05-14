@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   before_action :set_location, only: [:edit, :update, :destroy]
 
   def index
@@ -18,6 +18,7 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
+    authorize! :create, @location
 
     respond_to do |format|
       if @location.save

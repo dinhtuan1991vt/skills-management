@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   before_action :set_role, only: [:edit, :update, :destroy]
 
   def index
@@ -15,6 +15,7 @@ class RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
+    authorize! :create, @role
 
     respond_to do |format|
       if @role.save

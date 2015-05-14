@@ -1,13 +1,8 @@
-class LocationsDatatable
-  delegate :params, :h, :link_to, :fa_icon, :edit_location_path, to: :@view
-
-  def initialize(view)
-    @view = view
-  end
+class LocationsDatatable < BaseDatatable
+  delegate :edit_location_path, to: :@view
 
   def as_json(options = {})
     {
-      sEcho: params[:sEcho].to_i,
       iTotalRecords: Location.count,
       iTotalDisplayRecords: locations.total_entries,
       aaData: data
@@ -15,7 +10,6 @@ class LocationsDatatable
   end
 
 private
-
   def data
     locations.map do |location|
       [
@@ -41,20 +35,8 @@ private
     locations
   end
 
-  def page
-    params["start"].to_i/per_page + 1
-  end
-
-  def per_page
-    params["length"].to_i > 0 ? params["length"].to_i : 10
-  end
-
   def sort_column
     columns = %w[name latitude longitude]
-    columns[params["order"]["0"]["column"].to_i]
-  end
-
-  def sort_direction
-    params["order"]["0"]["dir"] == "desc" ? "desc" : "asc"
+    super columns
   end
 end

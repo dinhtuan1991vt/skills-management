@@ -18,4 +18,4 @@
 //= require dataTables/jquery.dataTables
 //= require bootstrap
 //= require turbolinks
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core

@@ -1,9 +1,12 @@
 class SkillCategoriesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = SkillCategory.order("id desc").paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+      format.json { render json: SkillCategoriesDatatable.new(view_context) }
+    end
   end
 
   def new
@@ -12,11 +15,13 @@ class SkillCategoriesController < ApplicationController
 
   def create
     @category = SkillCategory.new(category_params)
+    authorize! :create, @category
 
     respond_to do |format|
       if @category.save
         format.html { redirect_to skill_categories_path, notice: 'Category was successfully created.' }
       else
+        flash[:alert] = @category.errors.full_messages.to_sentence
         format.html { render :new }
       end
     end
@@ -45,6 +50,6 @@ class SkillCategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:skill_category).permit(:name, :parent_id)
+      params.require(:skill_category).permit(:name)
     end
 end
