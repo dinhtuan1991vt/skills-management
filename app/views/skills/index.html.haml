@@ -2,7 +2,7 @@
   = t('.title')
 = link_to t('.create'), new_skill_category_skill_path, class: "btn btn-danger new-item"
 
-%table.table.table-bordered.table-striped
+%table.table.table-bordered.table-striped.responsive.no-wrap#skills-table{"data-source" => skill_category_skills_path(format: "json")}
   %thead
     %tr
       %th
@@ -12,7 +12,3 @@
       %th
         = t('.actions')
   %tbody
-    = render @skills
-
-%div.digg_pagination
-  = will_paginate @skills

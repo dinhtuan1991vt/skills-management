@@ -4,7 +4,10 @@ class SkillsController < ApplicationController
   before_action :set_category
 
   def index
-    @skills = @category.skills.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+      format.json { render json: SkillsDatatable.new(view_context) }
+    end
   end
 
   def new
@@ -45,7 +48,6 @@ class SkillsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_skill
       @skill = Skill.find(params[:id])
     end
@@ -54,7 +56,6 @@ class SkillsController < ApplicationController
       @category = SkillCategory.find(params[:skill_category_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
       params.require(:skill).permit(:name, :description)
     end

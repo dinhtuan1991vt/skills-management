@@ -47,6 +47,8 @@ $(document).on('page:change', function() {
   }
 
   setDatatable("#locations-table");
-  setDatatable("#skill-categories-table")
+  setDatatable("#skill-categories-table");
+  setDatatable("#skills-table");
+
 
 });
