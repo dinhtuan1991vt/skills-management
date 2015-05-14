@@ -22,8 +22,12 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right hidden-sm hidden-md hidden-lg">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/table.php">Calendar</a></li>
+                    <%= render_menu_item(locations_path, t('locations.index.title')) %>
+                    <%= render_menu_item(skill_categories_path, t('skills.index.title')) %>
+                    <%= render_menu_item(teams_path, t('teams.index.title')) %>
+                    <%= render_menu_item(roles_path, t('roles.index.title')) %>
+                    <%= render_menu_item(users_path, t('users.index.title')) %>
+                    <%= render_menu_item(qualifications_path, t('qualifications.index.title')) %>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
