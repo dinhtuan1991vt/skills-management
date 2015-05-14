@@ -3,7 +3,10 @@ class QualificationsController < ApplicationController
   before_action :set_qualification, only: [:edit, :update, :destroy]
 
   def index
-    @qualifications = Qualification.order("id desc").paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+      format.json { render json: QualificationsDatatable.new(view_context) }
+    end
   end
 
   def new
