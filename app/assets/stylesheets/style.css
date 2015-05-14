@@ -3,6 +3,10 @@ body {
   padding-top: 70px;
 }
 
+.sorting, .sorting_asc, .sorting_desc {
+  background: none !important;
+}
+
 .navbar-fixed-bottom {
   line-height: 50px;
 }
