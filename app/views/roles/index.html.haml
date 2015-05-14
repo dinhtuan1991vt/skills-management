@@ -2,15 +2,10 @@
   = t('.title')
 = link_to t('.create'), new_role_path, class: "btn btn-danger new-item"
 
-%table.table.table-bordered.table-striped
+%table.table.table-bordered.table-striped.responsive.no-wrap#roles-table{"data-source" => roles_path(format: "json")}
   %thead
     %tr
       %th
         = t('.name')
       %th
         = t('.actions')
-  %tbody
-    = render @roles
-
-%div.digg_pagination
-  = will_paginate @roles

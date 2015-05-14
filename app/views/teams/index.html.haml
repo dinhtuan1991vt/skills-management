@@ -2,15 +2,10 @@
   = t('.title')
 = link_to t('.create'), new_team_path, class: "btn btn-danger new-item"
 
-%table.table.table-bordered.table-striped
+%table.table.table-bordered.table-striped.responsive.no-wrap#teams-table{"data-source" => teams_path(format: "json")}
   %thead
     %tr
       %th
         = t('.name')
       %th
         = t('.actions')
-  %tbody
-    = render @teams
-
-%div.digg_pagination
-  = will_paginate @teams

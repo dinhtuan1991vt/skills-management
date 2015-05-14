@@ -3,7 +3,10 @@ class TeamsController < ApplicationController
   load_and_authorize_resource except: [:create]
 
   def index
-    @teams = Team.order("id desc").paginate(:page => params[:page], :per_page => 10)
+     respond_to do |format|
+      format.html
+      format.json { render json: TeamsDatatable.new(view_context) }
+    end
   end
 
   def new

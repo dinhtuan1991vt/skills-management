@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :first_name, :sur_name, presence: true
+  validates :first_name, :sur_name, :location, :team, presence: true
   belongs_to :location
   belongs_to :team
-  has_many :qualifications
+  has_many :qualifications, dependent: :destroy
 
   def active_for_authentication?
     super && status?

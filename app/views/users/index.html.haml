@@ -2,7 +2,7 @@
   = t('.title')
 = link_to t('.create'), new_user_path, class: "btn btn-danger new-item"
 
-%table.table.table-bordered.table-striped
+%table.table.table-bordered.table-striped.responsive.no-wrap#users-table{"data-source" => users_path(format: "json")}
   %thead
     %tr
       %th
@@ -15,8 +15,3 @@
         = t('.location')
       %th
         = t('.actions')
-  %tbody
-    = render @users
-
-%div.digg_pagination
-  = will_paginate @users
