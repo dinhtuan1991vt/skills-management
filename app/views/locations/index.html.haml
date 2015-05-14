@@ -2,7 +2,7 @@
   = t('.title')
 = link_to t('.create'), new_location_path, class: "btn btn-danger new-item"
 
-%table.table.table-bordered.table-striped
+%table.table.table-bordered.table-striped.responsive.no-wrap#locations-table{"data-source" => locations_path(format: "json")}
   %thead
     %tr
       %th
@@ -14,7 +14,3 @@
       %th
         = t('.actions')
   %tbody
-    = render @locations
-
-%div.digg_pagination
-  = will_paginate @locations

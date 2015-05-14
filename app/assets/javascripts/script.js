@@ -33,6 +33,15 @@ $(document).on('page:change', function() {
 
   $("#qualification-form").validate();
 
-
+  $('#locations-table').dataTable({
+     ajax: $('#locations-table').data('source'),
+     pagingType: 'full_numbers',
+     serverSide: true,
+     responsive: true,
+     "columnDefs": [{
+      "targets": -1,
+      "orderable": false
+     }]
+  });
 
 });
