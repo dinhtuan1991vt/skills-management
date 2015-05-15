@@ -2,11 +2,4 @@
   = t('.title')
 = link_to t('.create'), new_skill_category_path, class: "btn btn-danger new-item"
 
-%table.table.table-bordered.table-striped.responsive.no-wrap#skill-categories-table{"data-source" => skill_categories_path(format: "json")}
-  %thead
-    %tr
-      %th
-        = t('.name')
-      %th
-        = t('.actions')
-  %tbody
+%div#skills-jstree{"data-source" => skill_categories_path(format: "json")}

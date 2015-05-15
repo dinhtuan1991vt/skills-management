@@ -47,10 +47,21 @@ $(document).on('page:change', function() {
   }
 
   setDatatable("#locations-table");
-  setDatatable("#skill-categories-table");
   setDatatable("#skills-table");
   setDatatable("#teams-table");
   setDatatable("#roles-table");
   setDatatable("#users-table");
   setDatatable("#qualifications-table");
+
+  $("#skills-jstree")
+    .jstree({
+      'core' : {
+        'data' : {
+          'url': $("#skills-jstree").data('source'),
+        }
+      }
+    })
+    .on('loaded.jstree', function() {
+      $(this).jstree('open_all');
+    });
 });
