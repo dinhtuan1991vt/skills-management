@@ -50,6 +50,6 @@ class SkillCategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:skill_category).permit(:name)
+      params.require(:skill_category).permit(:name, :parent_id)
     end
 end

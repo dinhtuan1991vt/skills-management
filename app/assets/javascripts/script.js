@@ -53,12 +53,40 @@ $(document).on('page:change', function() {
   setDatatable("#users-table");
   setDatatable("#qualifications-table");
 
+  function customMenu(node) {
+    var new_children_path = node.a_attr.new_children_path;
+    var items = {};
+
+    if (typeof(new_children_path) !== "undefined") {
+      items.createItem = {
+        label: "New skill",
+        action: function () {
+          document.location.href = node.a_attr.new_children_path;
+        }
+      };
+    }
+
+    items.editItem = {
+      label: "Edit",
+      action: function () {
+        document.location.href = node.a_attr.edit_path;
+      }
+    };
+
+    return items;
+  }
+
   $("#skills-jstree")
     .jstree({
       'core' : {
+        "check_callback" : true,
         'data' : {
           'url': $("#skills-jstree").data('source'),
         }
+      },
+      "plugins" : ["contextmenu"],
+      "contextmenu" : {
+          "items" : customMenu
       }
     })
     .on('loaded.jstree', function() {
