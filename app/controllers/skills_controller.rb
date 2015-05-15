@@ -23,7 +23,7 @@ class SkillsController < ApplicationController
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to skill_category_skills_path, notice: 'Skill was successfully created.' }
+        format.html { redirect_to skill_categories_path, notice: 'Skill was successfully created.' }
       else
         format.html { render :new }
       end
@@ -33,7 +33,7 @@ class SkillsController < ApplicationController
   def update
     respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to skill_category_skills_path, notice: 'Skill was successfully updated.' }
+        format.html { redirect_to skill_categories_path, notice: 'Skill was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -43,7 +43,7 @@ class SkillsController < ApplicationController
   def destroy
     @skill.destroy
     respond_to do |format|
-      format.html { redirect_to skill_category_skills_path, notice: 'Skill was successfully deleted.' }
+      format.html { redirect_to skill_categories_path, notice: 'Skill was successfully deleted.' }
     end
   end
 

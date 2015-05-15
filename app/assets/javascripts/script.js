@@ -73,6 +73,19 @@ $(document).on('page:change', function() {
       }
     };
 
+    items.deleteItem = {
+      label: "Delete",
+      action: function () {
+        $("#skills-jstree").jstree("delete_node", node.id);
+        $.ajax({
+          url: node.a_attr.delete_path,
+          type: "POST",
+          dataType: "json",
+          data: {"_method": "delete"}
+        });
+      }
+    };
+
     return items;
   }
 
@@ -81,10 +94,10 @@ $(document).on('page:change', function() {
       'core' : {
         "check_callback" : true,
         'data' : {
-          'url': $("#skills-jstree").data('source'),
+          'url': $("#skills-jstree").data('source')
         }
       },
-      "plugins" : ["contextmenu"],
+      "plugins" : ["contextmenu", "sort", "crrm"],
       "contextmenu" : {
           "items" : customMenu
       }

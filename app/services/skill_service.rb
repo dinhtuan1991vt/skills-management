@@ -16,9 +16,10 @@ class SkillService
       text: category.name,
       parent: node_parent,
       icon: "glyphicon glyphicon-folder-close",
-      a_attr:{
+      a_attr: {
         new_children_path: new_skill_category_skill_path(category),
-        edit_path: edit_skill_category_path(category)
+        edit_path: edit_skill_category_path(category),
+        delete_path: skill_category_path(category)
       }
     }
   end
@@ -32,8 +33,9 @@ class SkillService
       text: skill.name,
       parent: node_parent,
       icon: "glyphicon glyphicon-leaf",
-      a_attr:{
-        edit_path: edit_skill_category_skill_path(id: skill, skill_category_id: skill.skill_category)
+      a_attr: {
+        edit_path: edit_skill_category_skill_path(id: skill, skill_category_id: skill.skill_category),
+        delete_path: skill_category_skill_path(id: skill, skill_category_id: skill.skill_category)
       }
     }
   end
