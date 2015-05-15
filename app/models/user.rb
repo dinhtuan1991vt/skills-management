@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :first_name, :sur_name, :location, :team, presence: true
+  validates :first_name, :sur_name, presence: true
   belongs_to :location
   belongs_to :team
   has_many :qualifications, dependent: :destroy
@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name + ' ' + sur_name
+    "#{first_name} #{sur_name}"
   end
 end
