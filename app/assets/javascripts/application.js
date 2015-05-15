@@ -21,3 +21,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require bootstrap-datepicker/core
+//= require jstree
+//= require jquery.validate.min
+//= require additional-methods.min
+//= require script

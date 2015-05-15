@@ -10,11 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require bootstrap.min
+ *= require pagination
+ *= require style
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require dataTables/extras/dataTables.responsive
  *= require dataTables/jquery.dataTables
  *= require_self
  *= require bootstrap-datepicker3
  *= require font-awesome
+ *= require jsTree/style.min.css
  */
