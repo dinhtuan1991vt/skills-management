@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:edit, :update, :destroy]
+  before_action :load_team_service, only: [:create, :update, :destroy]
   load_and_authorize_resource except: [:create]
 
   def index
@@ -18,8 +19,8 @@ class TeamsController < ApplicationController
     authorize! :create, @team
 
     respond_to do |format|
-      if @team.save
-        format.html { redirect_to teams_path, notice: 'Team was successfully created.' }
+      if @team_service.save_team(@team)
+        format.html { redirect_to teams_path, notice: I18n.t('teams.index.create_notice') }
       else
         format.html { render :new }
       end
@@ -28,8 +29,8 @@ class TeamsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to teams_path, notice: 'Team was successfully updated.' }
+      if @team_service.update_team(@team, team_params)
+        format.html { redirect_to teams_path, notice: I18n.t('teams.index.update_notice') }
       else
         format.html { render :edit }
       end
@@ -37,19 +38,26 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team.destroy
+    @team_service.destroy_team(@team)
     respond_to do |format|
-      format.html { redirect_to teams_path, notice: 'Team was successfully deleted.' }
+      format.html { redirect_to teams_path, notice: I18n.t('teams.index.destroy_notice') }
     end
   end
 
   private
+    # Set team
     def set_team
       @team = Team.find(params[:id])
     end
 
+    # Get params
     def team_params
       params.require(:team).permit(:name)
+    end
+
+    # Load service
+    def load_team_service
+      @team_service = TeamService.new
     end
 
 end

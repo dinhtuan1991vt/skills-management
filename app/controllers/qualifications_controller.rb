@@ -1,6 +1,7 @@
 class QualificationsController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_qualification, only: [:edit, :update, :destroy]
+  before_action :load_qualification_service, only: [:create, :update, :destroy]
 
   def index
     respond_to do |format|
@@ -21,8 +22,8 @@ class QualificationsController < ApplicationController
     authorize! :create, @qualification
 
     respond_to do |format|
-      if @qualification.save
-        format.html { redirect_to qualifications_path, notice: 'Qualification was successfully created.' }
+      if @qualification_service.save_qualification(@qualification)
+        format.html { redirect_to qualifications_path, notice: I18n.t('qualifications.index.create_notice') }
       else
         flash[:alert] = @qualification.errors.full_messages.to_sentence
         format.html { render :new }
@@ -32,8 +33,8 @@ class QualificationsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @qualification.update(qualification_params)
-        format.html { redirect_to qualifications_path, notice: 'Qualification was successfully updated.' }
+      if @qualification_service.update_qualification(@qualification, qualification_params)
+        format.html { redirect_to qualifications_path, notice: I18n.t('qualifications.index.update_notice') }
       else
         flash[:alert] = @qualification.errors.full_messages.to_sentence
         format.html { render :edit }
@@ -42,18 +43,25 @@ class QualificationsController < ApplicationController
   end
 
   def destroy
-    @qualification.destroy
+    @qualification_service.destroy_qualification(@qualification)
     respond_to do |format|
-      format.html { redirect_to qualifications_path, notice: 'Qualification was successfully deleted.' }
+      format.html { redirect_to qualifications_path, notice: I18n.t('qualifications.index.destroy_notice') }
     end
   end
 
   private
+    # Set qualification
     def set_qualification
       @qualification = Qualification.find(params[:id])
     end
 
+    # Get params
     def qualification_params
       params.require(:qualification).permit(:name, :status, :from_date, :to_date, :user_id)
+    end
+
+    # Load qualification service
+    def load_qualification_service
+      @qualification_service = QualificationService.new
     end
 end

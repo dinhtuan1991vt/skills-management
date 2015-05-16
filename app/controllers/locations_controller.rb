@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_location, only: [:edit, :update, :destroy]
+  before_action :load_location_service, only: [:create, :update, :destroy]
 
   def index
     respond_to do |format|
@@ -21,8 +22,8 @@ class LocationsController < ApplicationController
     authorize! :create, @location
 
     respond_to do |format|
-      if @location.save
-        format.html { redirect_to locations_path, notice: 'Location was successfully created.' }
+      if @location_service.save_location(@location)
+        format.html { redirect_to locations_path, notice: I18n.t('locations.index.create_notice') }
       else
         format.html { render :new }
       end
@@ -31,8 +32,8 @@ class LocationsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @location.update(location_params)
-        format.html { redirect_to locations_path, notice: 'Location was successfully updated.' }
+      if @location_service.update_location(@location, location_params)
+        format.html { redirect_to locations_path, notice: I18n.t('locations.index.update_notice') }
       else
         format.html { render :edit }
       end
@@ -40,20 +41,25 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    @location.destroy
+    @location_service.destroy_location(@location)
     respond_to do |format|
-      format.html { redirect_to locations_path, notice: 'Location was successfully deleted.' }
+      format.html { redirect_to locations_path, notice: I18n.t('locations.index.destroy_notice') }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Set location
     def set_location
       @location = Location.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Get params
     def location_params
       params.require(:location).permit(:name, :latitude, :longitude)
+    end
+
+    # Load location service
+    def load_location_service
+      @location_service = LocationService.new
     end
 end

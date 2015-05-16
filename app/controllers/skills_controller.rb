@@ -2,12 +2,9 @@ class SkillsController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_skill, only: [:edit, :update, :destroy]
   before_action :set_category
+  before_action :load_skill_service, only: [:create, :update, :destroy]
 
   def index
-    respond_to do |format|
-      format.html
-      format.json { render json: SkillsDatatable.new(view_context) }
-    end
   end
 
   def new
@@ -22,8 +19,8 @@ class SkillsController < ApplicationController
     authorize! :create, @skill
 
     respond_to do |format|
-      if @skill.save
-        format.html { redirect_to skill_categories_path, notice: 'Skill was successfully created.' }
+      if @skill_service.save_skill(@skill)
+        format.html { redirect_to skill_categories_path, notice: I18n.t('skills.index.create_notice') }
       else
         format.html { render :new }
       end
@@ -32,8 +29,8 @@ class SkillsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @skill.update(skill_params)
-        format.html { redirect_to skill_categories_path, notice: 'Skill was successfully updated.' }
+      if @skill_service.update_skill(@skill, skill_params)
+        format.html { redirect_to skill_categories_path, notice: I18n.t('skills.index.update_notice') }
       else
         format.html { render :edit }
       end
@@ -41,22 +38,30 @@ class SkillsController < ApplicationController
   end
 
   def destroy
-    @skill.destroy
+    @skill_service.destroy_skill(@skill)
     respond_to do |format|
-      format.html { redirect_to skill_categories_path, notice: 'Skill was successfully deleted.' }
+      format.html { redirect_to skill_categories_path, notice: I18n.t('skills.index.destroy_notice') }
     end
   end
 
   private
+    # Set skill
     def set_skill
       @skill = Skill.find(params[:id])
     end
 
+    # Set skill category
     def set_category
       @category = SkillCategory.find(params[:skill_category_id])
     end
 
+    # Get params
     def skill_params
       params.require(:skill).permit(:name, :description)
+    end
+
+    # Load service
+    def load_skill_service
+      @skill_service = SkillService.new
     end
 end

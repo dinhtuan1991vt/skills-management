@@ -33,6 +33,9 @@ en:
       description: "Description"
       actions: "Actions"
       delete_confirm: "Are you sure to delete this skill?"
+      create_notice: "Skill was successfully created."
+      update_notice: "Skill was successfully updated."
+      destroy_notice: "Skill was successfully deleted."
     new:
       title: "New skill"
     edit:
@@ -46,6 +49,9 @@ en:
       actions: "Actions"
       delete_confirm: "Are you sure to delete this category?"
       parent: "Parent category"
+      create_notice: "Skill category was successfully created."
+      update_notice: "Skill category was successfully updated."
+      destroy_notice: "Skill category was successfully deleted."
     new:
       title: "New skill category"
     edit:
@@ -59,6 +65,9 @@ en:
       actions: "Actions"
       delete_confirm: "Are you sure to delete this team?"
       parent: "Parent team"
+      create_notice: "Team was successfully created."
+      update_notice: "Team was successfully updated."
+      destroy_notice: "Team was successfully deleted."
     new:
       title: "New team"
     edit:
@@ -71,6 +80,9 @@ en:
       name: "Name"
       actions: "Actions"
       delete_confirm: "Are you sure to delete this role?"
+      create_notice: "Role was successfully created."
+      update_notice: "Role was successfully updated."
+      destroy_notice: "Role was successfully deleted."
     new:
       title: "New role"
     edit:
@@ -87,6 +99,9 @@ en:
       to_date: "To date"
       actions: "Actions"
       delete_confirm: "Are you sure to delete this qualification?"
+      create_notice: "Qualification was successfully created."
+      update_notice: "Qualification was successfully updated."
+      destroy_notice: "Qualification was successfully deleted."
     new:
       title: "New qualification"
     edit:
@@ -106,6 +121,9 @@ en:
       status: "Status"
       actions: "Actions"
       delete_confirm: "Are you sure to delete this user?"
+      create_notice: "User was successfully created."
+      update_notice: "User was successfully updated."
+      destroy_notice: "User was successfully deleted."
     new:
       title: "New user"
     edit:
@@ -120,6 +138,9 @@ en:
       longitude: "Longitude"
       actions: "Actions"
       delete_confirm: "Are you sure to delete this location?"
+      create_notice: "Location was successfully created."
+      update_notice: "Location was successfully updated."
+      destroy_notice: "Location was successfully deleted."
     new:
       title: "New location"
     edit:

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :load_user_service, only: [:create, :update, :destroy]
 
   def index
     respond_to do |format|
@@ -21,8 +22,8 @@ class UsersController < ApplicationController
     authorize! :create, @user
 
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to users_path, notice: 'User was successfully created.' }
+      if @user_service.save_user(@user)
+        format.html { redirect_to users_path, notice: I18n.t('users.index.create_notice') }
       else
         flash[:alert] = @user.errors.full_messages.to_sentence
         format.html { render :new }
@@ -32,8 +33,8 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+      if @user_service.update_user(@user, user_params)
+        format.html { redirect_to users_path, notice: I18n.t('users.index.update_notice') }
       else
         flash[:alert] = @user.errors.full_messages.to_sentence
         format.html { render :edit }
@@ -42,18 +43,25 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @user_service.destroy_user(@user)
     respond_to do |format|
-      format.html { redirect_to users_path, notice: 'User was successfully deleted.' }
+      format.html { redirect_to users_path, notice: I18n.t('users.index.destroy_notice') }
     end
   end
 
   private
+    # Set user
     def set_user
       @user = User.find(params[:id])
     end
 
+    # Get params
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id)
+    end
+
+    # Load service
+    def load_user_service
+      @user_service = UserService.new
     end
 end
