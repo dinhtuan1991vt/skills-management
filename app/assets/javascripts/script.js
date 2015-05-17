@@ -33,7 +33,9 @@ $(document).on('page:change', function() {
 
   $("#qualification-form").validate();
 
-  function setDatatable(tableId) {
+  function setDatatable(tableId, pageLength) {
+    pageLength = pageLength || 10;
+
     $(tableId).dataTable({
      ajax: $(tableId).data('source'),
      pagingType: 'full_numbers',
@@ -42,7 +44,8 @@ $(document).on('page:change', function() {
      "columnDefs": [{
       "targets": -1,
       "orderable": false
-     }]
+     }],
+     pageLength: pageLength
   });
   }
 

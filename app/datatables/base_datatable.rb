@@ -13,7 +13,7 @@ protected
 
   # Get number of items per page
   def per_page
-    params["length"].to_i > 0 ? params["length"].to_i : 10
+    params["length"].to_i
   end
 
   # Get index of sort column
