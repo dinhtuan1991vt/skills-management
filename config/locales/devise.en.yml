@@ -6,6 +6,7 @@ en:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      title: "Resend confirmation instructions"
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
@@ -19,6 +20,7 @@ en:
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
+        title: "You can confirm your account email through the link below:"
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:
@@ -27,6 +29,14 @@ en:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords:
+      new:
+        title: "Forgot Your Password"
+        reset_password: "Reset password"
+      edit:
+        title: "Change your password"
+        new_password: "New password"
+        confirm_password: "Confirm new password"
+        change_password: "Change my password"
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
@@ -44,6 +54,9 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      title: "Sign In"
+      remember_me: "Remember me"
+      log_in: "Log In"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
