@@ -1,6 +1,7 @@
 class SkillsDatatable < BaseDatatable
   delegate :edit_skill_category_skill_path, :skill_category_skill_path, to: :@view
 
+  # Get result
   def as_json(options = {})
     {
       iTotalRecords: Skill.count,
@@ -10,12 +11,15 @@ class SkillsDatatable < BaseDatatable
   end
 
 private
+  # Map skills to data
   def data
     skills.map do |skill|
+      edit_path = link_to(fa_icon('edit lg'), edit_skill_category_skill_path(id: skill.id))
+      delete_path = link_to(fa_icon('trash-o lg'), skill_category_skill_path(id: skill.id), method: :delete, data: { confirm: I18n.t('skills.index.delete_confirm') })
       [
         skill.name,
         skill.description,
-        link_to(fa_icon('edit lg'), edit_skill_category_skill_path(id: skill.id)) + " " + link_to(fa_icon('trash-o lg'), skill_category_skill_path(id: skill.id), method: :delete, data: { confirm: I18n.t('skills.index.delete_confirm') })
+        "#{edit_path} #{delete_path}"
       ]
     end
   end

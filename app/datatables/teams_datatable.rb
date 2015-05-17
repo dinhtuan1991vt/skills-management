@@ -1,6 +1,7 @@
 class TeamsDatatable < BaseDatatable
   delegate :edit_team_path, to: :@view
 
+  # Get result
   def as_json(options = {})
     {
       iTotalRecords: Team.count,
@@ -10,11 +11,14 @@ class TeamsDatatable < BaseDatatable
   end
 
 private
+  # Map teams to data
   def data
     teams.map do |team|
+      edit_path = link_to(fa_icon('edit lg'), edit_team_path(team))
+      delete_path = link_to(fa_icon('trash-o lg'), team, method: :delete, data: { confirm: I18n.t('teams.index.delete_confirm') })
       [
         team.name,
-        link_to(fa_icon('edit lg'), edit_team_path(team)) + " " + link_to(fa_icon('trash-o lg'), team, method: :delete, data: { confirm: I18n.t('teams.index.delete_confirm') })
+        "#{edit_path} #{delete_path}"
       ]
     end
   end

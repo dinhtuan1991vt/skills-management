@@ -3,6 +3,7 @@ class QualificationsController < ApplicationController
   before_action :set_qualification, only: [:edit, :update, :destroy]
   before_action :load_qualification_service, only: [:create, :update, :destroy]
 
+  # Show qualifications
   def index
     respond_to do |format|
       format.html
@@ -10,13 +11,16 @@ class QualificationsController < ApplicationController
     end
   end
 
+  # New qualification
   def new
     @qualification = Qualification.new
   end
 
+  # Edit qualification
   def edit
   end
 
+  # Create new qualification
   def create
     @qualification = Qualification.new(qualification_params)
     authorize! :create, @qualification
@@ -31,6 +35,7 @@ class QualificationsController < ApplicationController
     end
   end
 
+  # Update qualification
   def update
     respond_to do |format|
       if @qualification_service.update_qualification(@qualification, qualification_params)
@@ -42,6 +47,7 @@ class QualificationsController < ApplicationController
     end
   end
 
+  # Delete qualification
   def destroy
     @qualification_service.destroy_qualification(@qualification)
     respond_to do |format|
@@ -50,7 +56,7 @@ class QualificationsController < ApplicationController
   end
 
   private
-    # Set qualification
+    # Set current qualification
     def set_qualification
       @qualification = Qualification.find(params[:id])
     end

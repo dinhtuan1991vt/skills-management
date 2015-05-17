@@ -1,6 +1,6 @@
 class RolesDatatable < BaseDatatable
   delegate :edit_role_path, :role_path, to: :@view
-
+  # Get result
   def as_json(options = {})
     {
       iTotalRecords: Role.count,
@@ -10,11 +10,14 @@ class RolesDatatable < BaseDatatable
   end
 
 private
+  # Map roles to data
   def data
     roles.map do |role|
+      edit_path = link_to(fa_icon('edit lg'), edit_role_path(role))
+      delete_path = link_to(fa_icon('trash-o lg'), role_path(role), method: :delete, data: { confirm: I18n.t('roles.index.delete_confirm') })
       [
         role.name,
-        link_to(fa_icon('edit lg'), edit_role_path(role)) + " " + link_to(fa_icon('trash-o lg'), role_path(role), method: :delete, data: { confirm: I18n.t('roles.index.delete_confirm') })
+        "#{edit_path} #{delete_path}"
       ]
     end
   end

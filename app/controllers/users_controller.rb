@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
   before_action :load_user_service, only: [:create, :update, :destroy]
 
+  # Show users
   def index
     respond_to do |format|
       format.html
@@ -10,13 +11,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # New user
   def new
     @user = User.new
   end
 
+  # Edit user
   def edit
   end
 
+  # Create new user
   def create
     @user = User.new(user_params)
     authorize! :create, @user
@@ -31,6 +35,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Update user
   def update
     respond_to do |format|
       if @user_service.update_user(@user, user_params)
@@ -42,6 +47,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Delete user
   def destroy
     @user_service.destroy_user(@user)
     respond_to do |format|
@@ -50,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   private
-    # Set user
+    # Set current user
     def set_user
       @user = User.find(params[:id])
     end

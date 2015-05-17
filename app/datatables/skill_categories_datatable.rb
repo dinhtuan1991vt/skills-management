@@ -10,11 +10,14 @@ class SkillCategoriesDatatable < BaseDatatable
   end
 
 private
+  # Map categories to data
   def data
     skill_categories.map do |category|
+      edit_path = link_to(fa_icon('edit lg'), edit_skill_category_path(category))
+      delete_path = link_to(fa_icon('trash-o lg'), category, method: :delete, data: { confirm: I18n.t('skill_categories.index.delete_confirm') })
       [
         link_to(category.name, skill_category_skills_path(category)),
-        link_to(fa_icon('edit lg'), edit_skill_category_path(category)) + " " + link_to(fa_icon('trash-o lg'), category, method: :delete, data: { confirm: I18n.t('skill_categories.index.delete_confirm') })
+        "#{edit_path} #{delete_path}"
       ]
     end
   end

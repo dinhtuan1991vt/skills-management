@@ -14,10 +14,12 @@ class User < ActiveRecord::Base
     super && status?
   end
 
+  # Get user statuses
   def self.statuses
     [['Enabled', true], ['Disabled', false]]
   end
 
+  # Get full name
   def full_name
     "#{first_name} #{sur_name}"
   end

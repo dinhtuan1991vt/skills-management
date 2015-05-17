@@ -1,6 +1,7 @@
 class QualificationsDatatable < BaseDatatable
   delegate :edit_qualification_path, to: :@view
 
+  # Get result
   def as_json(options = {})
     {
       iTotalRecords: Qualification.count,
@@ -10,17 +11,20 @@ class QualificationsDatatable < BaseDatatable
   end
 
 private
+  # Map qualifications to data
   def data
     qualifications.map do |qualification|
       from_date = qualification.from_date.strftime("%Y-%m-%d") if !qualification.from_date.nil?
       to_date = qualification.to_date.strftime("%Y-%m-%d") if !qualification.to_date.nil?
+      edit_path = link_to(fa_icon('edit lg'), edit_qualification_path(qualification))
+      delete_path = link_to(fa_icon('trash-o lg'), qualification, method: :delete, data: { confirm: I18n.t('qualifications.index.delete_confirm')})
       [
         qualification.name,
         qualification.user.full_name,
         qualification.status,
         from_date,
         to_date,
-        link_to(fa_icon('edit lg'), edit_qualification_path(qualification)) + " " + link_to(fa_icon('trash-o lg'), qualification, method: :delete, data: { confirm: I18n.t('qualifications.index.delete_confirm') })
+        "#{edit_path} #{delete_path}"
       ]
     end
   end

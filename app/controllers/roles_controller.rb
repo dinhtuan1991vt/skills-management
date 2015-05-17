@@ -3,6 +3,7 @@ class RolesController < ApplicationController
   before_action :set_role, only: [:edit, :update, :destroy]
   before_action :load_role_service, only: [:create, :update, :destroy]
 
+  # Show roles
   def index
     respond_to do |format|
       format.html
@@ -10,13 +11,16 @@ class RolesController < ApplicationController
     end
   end
 
+  # New role
   def new
     @role = Role.new
   end
 
+  # Edit role
   def edit
   end
 
+  # Create new role
   def create
     @role = Role.new(role_params)
     authorize! :create, @role
@@ -30,6 +34,7 @@ class RolesController < ApplicationController
     end
   end
 
+  # Update role
   def update
     respond_to do |format|
       if @role_service.update_role(@role, role_params)
@@ -40,6 +45,7 @@ class RolesController < ApplicationController
     end
   end
 
+  # Delete role
   def destroy
     @role_service.destroy_role(@role)
     respond_to do |format|
@@ -48,7 +54,7 @@ class RolesController < ApplicationController
   end
 
   private
-    # Set role
+    # Set current role
     def set_role
       @role = Role.find(params[:id])
     end

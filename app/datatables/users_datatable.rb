@@ -1,6 +1,6 @@
 class UsersDatatable < BaseDatatable
   delegate :edit_user_path, to: :@view
-
+  # Get result
   def as_json(options = {})
     {
       iTotalRecords: User.count,
@@ -10,16 +10,19 @@ class UsersDatatable < BaseDatatable
   end
 
 private
+  # Map users to data
   def data
     users.map do |user|
     team_name = user.team.name if !user.team.nil?
     location_name = user.location.name if !user.location.nil?
+    edit_path = link_to(fa_icon('edit lg'), edit_user_path(user))
+    delete_path = link_to(fa_icon('trash-o lg'), user, method: :delete, data: { confirm: I18n.t('users.index.delete_confirm') })
       [
         user.email,
         user.full_name,
         team_name,
         location_name,
-        link_to(fa_icon('edit lg'), edit_user_path(user)) + " " + link_to(fa_icon('trash-o lg'), user, method: :delete, data: { confirm: I18n.t('users.index.delete_confirm') })
+        "#{edit_path} #{delete_path}"
       ]
     end
   end

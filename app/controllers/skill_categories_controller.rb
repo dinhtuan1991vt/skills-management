@@ -3,6 +3,7 @@ class SkillCategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
   before_action :load_skill_category_service, only: [:index, :create, :update, :destroy]
 
+  # Show skill categories and skills
   def index
     respond_to do |format|
       format.html
@@ -10,10 +11,12 @@ class SkillCategoriesController < ApplicationController
     end
   end
 
+  # New skill category
   def new
     @category = SkillCategory.new
   end
 
+  # Create new skill category
   def create
     @category = SkillCategory.new(category_params)
     authorize! :create, @category
@@ -28,6 +31,7 @@ class SkillCategoriesController < ApplicationController
     end
   end
 
+  # Update skill category
   def update
     respond_to do |format|
       if @skill_category_service.update_skill_category(@category, category_params)
@@ -38,6 +42,7 @@ class SkillCategoriesController < ApplicationController
     end
   end
 
+  # Delete skill category
   def destroy
     @skill_category_service.destroy_skill_category(@category)
     respond_to do |format|
@@ -46,7 +51,7 @@ class SkillCategoriesController < ApplicationController
   end
 
   private
-    # Set category
+    # Set current category
     def set_category
       @category = SkillCategory.find(params[:id])
     end

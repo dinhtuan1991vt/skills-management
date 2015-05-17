@@ -1,6 +1,7 @@
 module ApplicationHelper
   include ActionView::Helpers::TagHelper
 
+  # Render menu items
   def render_menu_item(path, text)
     class_name = current_page?(path) ? 'active' : ''
     content_tag(:li, class: class_name) do

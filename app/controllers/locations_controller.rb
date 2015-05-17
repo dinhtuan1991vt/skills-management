@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:edit, :update, :destroy]
   before_action :load_location_service, only: [:create, :update, :destroy]
 
+  # Show locations
   def index
     respond_to do |format|
       format.html
@@ -10,13 +11,16 @@ class LocationsController < ApplicationController
     end
   end
 
+  # New location
   def new
     @location = Location.new
   end
 
+  # Edit location
   def edit
   end
 
+  # Create new location
   def create
     @location = Location.new(location_params)
     authorize! :create, @location
@@ -30,6 +34,7 @@ class LocationsController < ApplicationController
     end
   end
 
+  # Update new location
   def update
     respond_to do |format|
       if @location_service.update_location(@location, location_params)
@@ -40,6 +45,7 @@ class LocationsController < ApplicationController
     end
   end
 
+  # Delete location
   def destroy
     @location_service.destroy_location(@location)
     respond_to do |format|
@@ -48,12 +54,12 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Set location
+    # Set current location
     def set_location
       @location = Location.find(params[:id])
     end
 
-    # Get params
+    # Get location params
     def location_params
       params.require(:location).permit(:name, :latitude, :longitude)
     end

@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
   before_action :load_team_service, only: [:create, :update, :destroy]
   load_and_authorize_resource except: [:create]
 
+  # Show teams
   def index
      respond_to do |format|
       format.html
@@ -10,10 +11,12 @@ class TeamsController < ApplicationController
     end
   end
 
+  # New team
   def new
     @team = Team.new
   end
 
+  # Create new team
   def create
     @team = Team.new(team_params)
     authorize! :create, @team
@@ -27,6 +30,7 @@ class TeamsController < ApplicationController
     end
   end
 
+  # Update team
   def update
     respond_to do |format|
       if @team_service.update_team(@team, team_params)
@@ -37,6 +41,7 @@ class TeamsController < ApplicationController
     end
   end
 
+  # Delete team
   def destroy
     @team_service.destroy_team(@team)
     respond_to do |format|
@@ -45,7 +50,7 @@ class TeamsController < ApplicationController
   end
 
   private
-    # Set team
+    # Set current team
     def set_team
       @team = Team.find(params[:id])
     end

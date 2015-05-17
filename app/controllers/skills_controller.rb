@@ -7,13 +7,16 @@ class SkillsController < ApplicationController
   def index
   end
 
+  # New skills in category
   def new
     @skill = @category.skills.build
   end
 
+  # Edit skill
   def edit
   end
 
+  # Create new skill in category
   def create
     @skill = @category.skills.build(skill_params)
     authorize! :create, @skill
@@ -27,6 +30,7 @@ class SkillsController < ApplicationController
     end
   end
 
+  # Update skill
   def update
     respond_to do |format|
       if @skill_service.update_skill(@skill, skill_params)
@@ -37,6 +41,7 @@ class SkillsController < ApplicationController
     end
   end
 
+  # Delete skill
   def destroy
     @skill_service.destroy_skill(@skill)
     respond_to do |format|
@@ -45,12 +50,12 @@ class SkillsController < ApplicationController
   end
 
   private
-    # Set skill
+    # Set current skill
     def set_skill
       @skill = Skill.find(params[:id])
     end
 
-    # Set skill category
+    # Set current skill category
     def set_category
       @category = SkillCategory.find(params[:skill_category_id])
     end
