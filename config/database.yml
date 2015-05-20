@@ -6,11 +6,11 @@
 #
 default: &default
   adapter: postgresql
+  encoding: unicode
+  database: skills-management
 
 development:
   adapter: postgresql
-  encoding: unicode
-  database: skills-management
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
