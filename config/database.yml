@@ -10,7 +10,11 @@ default: &default
   database: skills-management
 
 development:
-  adapter: postgresql
+  <<: *default
+  host: localhost
+  pool: 5
+  username: postgres
+  password: '12345'
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
