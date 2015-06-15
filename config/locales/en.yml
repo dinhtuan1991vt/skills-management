@@ -24,6 +24,7 @@ en:
   logout: "Log out"
   save: "Save"
   cancel: "Cancel"
+  next: "Next"
 
   skills:
     index:
