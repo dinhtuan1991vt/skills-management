@@ -4,6 +4,14 @@
   <title><%= t('title') %></title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%# i18n-js include %>
+  <%= javascript_include_tag "i18n" %>
+  <%= javascript_include_tag "translations" %>
+  <%# i18n-js setting %>
+  <%= javascript_tag do %>
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
