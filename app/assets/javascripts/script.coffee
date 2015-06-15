@@ -65,6 +65,7 @@ $(document).on 'page:change', ->
   setDatatable '#users-table'
   setDatatable '#qualifications-table'
 
+
   $('#skills-jstree').jstree(
     'core':
       'check_callback': true
@@ -79,3 +80,13 @@ $(document).on 'page:change', ->
 
   return
   return
+
+$(document).ready ->
+  $('#skill-set-select').change ->
+    if (Number(this.value) == 3)
+      $('#skill-set-notice').css('display', 'block')
+      $('#submit-btn-edit-user').val(I18n.t('next'))
+    else
+      $('#skill-set-notice').css('display', 'none')
+      $('#submit-btn-edit-user').val(I18n.t('save'))
+

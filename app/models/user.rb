@@ -24,4 +24,12 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{sur_name}"
   end
+
+  # Get user skill-set types
+  def self.skill_set_types
+    [['Use all skills', 0],
+    ['Use team skills', 1],
+    ['Use role skills', 2],
+    ['Custom', 3]]
+  end
 end

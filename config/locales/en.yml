@@ -120,6 +120,7 @@ en:
       team: "Team"
       status: "Status"
       actions: "Actions"
+      skill_set: "Skill set"
       delete_confirm: "Are you sure to delete this user?"
       create_notice: "User was successfully created."
       update_notice: "User was successfully updated."
