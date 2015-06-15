@@ -129,6 +129,7 @@ en:
       title: "New user"
     edit:
       title: "Edit user"
+      custom_skill: "You will specify the skill categories in the next step."
 
   locations:
     index:
