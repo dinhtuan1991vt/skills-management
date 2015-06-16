@@ -40,6 +40,13 @@
       = f.select :status, User.statuses, {}, {class: "form-control"}
 
   %div.form-group
+    = f.label :skill_set, t('users.index.skill_set'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.select :skill_set, User.skill_set_types, {}, {class: "form-control", id: "skill-set-select"}
+      %span#skill-set-notice
+        = t('users.edit.custom_skill')
+
+  %div.form-group
     %div.col-sm-offset-2.col-sm-4
-      = button_to t('save'), @user, class: "btn btn-primary"
+      = button_to t('save'), @user, {class: "btn btn-primary", id: "submit-btn-edit-user"}
       = link_to t('cancel'), users_path, class: "btn btn-default"

@@ -25,3 +25,6 @@
 //= require jquery.validate.min
 //= require additional-methods.min
 //= require script
+//= require i18n
+//= require i18n.js
+//= require i18n/translations

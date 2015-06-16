@@ -38,6 +38,10 @@ class UsersController < ApplicationController
   # Update user
   def update
     respond_to do |format|
+      if is_custom_skill_set
+        format.html { redirect_to custom_skill_user_path}
+      end
+
       if @user_service.update_user(@user, user_params)
         format.html { redirect_to users_path, notice: I18n.t('users.index.update_notice') }
       else
@@ -55,6 +59,10 @@ class UsersController < ApplicationController
     end
   end
 
+  # Custom skill
+  def custom_skill
+  end
+
   private
     # Set current user
     def set_user
@@ -63,7 +71,12 @@ class UsersController < ApplicationController
 
     # Get params
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id, :skill_set)
+    end
+
+    # Check is next commit
+    def is_custom_skill_set
+      params[:user][:skill_set].to_i == 3
     end
 
     # Load service
