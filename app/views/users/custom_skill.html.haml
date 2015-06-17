@@ -2,18 +2,18 @@
   = t('.title')
 = form_for @user, url: update_custom_skill_user_path(@user), html: {class: "form-horizontal", id: "user-form"} do |f|
 
-  %div.static-info
-    %label.control-label=t('users.custom.user_name')
-    %span.control-label=@user.full_name
-
-  %div.static-info
-    %label.control-label=t('skill_cat')
-    %span.control-label=t('skill_cat_des')
+  %div.form-group
+    %label.col-sm-2.control-label=t('users.custom.user_name')
+    %div.col-sm-4.control-label.left-text
+      %span=@user.full_name
 
   %div.form-group
-    %div#skills-jstree-checked{"data-source" => user_skills_path(@user, format: "json")}
+    %label.col-sm-2.control-label=t('skill_cat')
+    %div.col-sm-4.control-label.left-text
+      %span=t('skill_cat_des')
+      %div#skills-jstree-checked{"data-source" => user_skills_path(@user, format: "json")}
 
-  %div.form-group
+  %div.form-group.control-area
     %div.col-sm-offset-2.col-sm-4
       = button_to t('save'), @user, {class: "btn btn-primary", id: "custom-user-skill-btn"}
       = link_to t('cancel'), users_path, class: "btn btn-default"
