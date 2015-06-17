@@ -74,11 +74,19 @@ $(document).on 'page:change', ->
       'contextmenu'
       'sort'
       'crrm'
+      'checkbox'
     ]
     'contextmenu': 'items': customMenu).on 'loaded.jstree', ->
-  $(this).jstree 'open_all'
 
-  return
+  $('#skills-jstree-checked').jstree(
+    'core':
+      'data': 'url': $('#skills-jstree-checked').data('source')
+    'plugins': [
+      'sort'
+      'checkbox'
+    ])
+
+  $(this).jstree 'open_all'
   return
 
 $(document).ready ->
@@ -89,4 +97,17 @@ $(document).ready ->
     else
       $('#skill-set-notice').css('display', 'none')
       $('#submit-btn-edit-user').val(I18n.t('save'))
+
+  $('#custom-user-skill-btn').click (e) ->
+    e.preventDefault()
+    arr = $('#skills-jstree-checked').jstree(true).get_checked(false)
+    url_var = $("#user-form").attr("action")
+    $.ajax
+      url: $("#user-form").attr("action")
+      type: 'PATCH'
+      dataType: 'json'
+      data: {"arr_ids":arr}
+      success: (result) ->
+        window.location.href = result.href
+    return
 

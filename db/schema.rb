@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615081949) do
+ActiveRecord::Schema.define(version: 20150616070111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,6 @@ ActiveRecord::Schema.define(version: 20150615081949) do
 
   add_index "assesses", ["skill_id"], name: "index_assesses_on_skill_id", using: :btree
   add_index "assesses", ["user_id"], name: "index_assesses_on_user_id", using: :btree
-
-  create_table "custom_users_skill_categories", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "skill_category_id"
-  end
-
-  add_index "custom_users_skill_categories", ["skill_category_id"], name: "index_custom_users_skill_categories_on_skill_category_id", using: :btree
-  add_index "custom_users_skill_categories", ["user_id"], name: "index_custom_users_skill_categories_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string  "name"
@@ -113,8 +105,18 @@ ActiveRecord::Schema.define(version: 20150615081949) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  create_table "users_skills", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "skill_id"
+  end
+
+  add_index "users_skills", ["skill_id"], name: "index_users_skills_on_skill_id", using: :btree
+  add_index "users_skills", ["user_id"], name: "index_users_skills_on_user_id", using: :btree
+
   add_foreign_key "qualifications", "users"
   add_foreign_key "skills", "skill_categories"
   add_foreign_key "users", "locations"
   add_foreign_key "users", "teams"
+  add_foreign_key "users_skills", "skills"
+  add_foreign_key "users_skills", "users"
 end

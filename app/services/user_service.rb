@@ -13,4 +13,9 @@ class UserService < BaseService
   def destroy_user(user)
     user.destroy
   end
+
+  # Check is id?
+  def is_id?(id)
+    id.to_s == id.to_i.to_s
+  end
 end
