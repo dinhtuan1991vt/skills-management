@@ -1,7 +1,7 @@
 class SkillCategoriesController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_category, only: [:edit, :update, :destroy]
-  before_action :load_skill_category_service, only: [:index, :create, :update, :destroy]
+  before_action :load_skill_category_service, only: [:index, :create, :update, :destroy, :user_skills]
 
   # Show skill categories and skills
   def index
@@ -47,6 +47,12 @@ class SkillCategoriesController < ApplicationController
     @skill_category_service.destroy_skill_category(@category)
     respond_to do |format|
       format.html { redirect_to skill_categories_path, notice: I18n.t('skill_categories.index.destroy_notice') }
+    end
+  end
+
+  def user_skills
+    respond_to do |format|
+      format.json { render json: @skill_category_service.get_hierarchy_checked(params[:user_id]) }
     end
   end
 

@@ -23,38 +23,74 @@ class SkillCategoryService < BaseService
     categories + skills
   end
 
-  # Get skill category node data
-  def get_skill_category_node(category)
-    node_id = "category_#{category.id}"
-    node_parent = category.parent.nil? ? "#" : "category_#{category.parent_id}"
-
-    {
-      id: node_id,
-      text: category.name,
-      parent: node_parent,
-      icon: "glyphicon glyphicon-folder-close",
-      a_attr: {
-        new_children_path: new_skill_category_skill_path(category),
-        edit_path: edit_skill_category_path(category),
-        delete_path: skill_category_path(category)
-      }
-    }
+  # Get skill categories and skills hierarchy - checked
+  def get_hierarchy_checked(user_id)
+    categories = SkillCategory.all.map {|category| get_skill_category_node_checked(category)}
+    skills = Skill.all.map {|skill| get_skill_node_checked(skill, user_id)}
+    categories + skills
   end
 
-  # Get skill node data
-  def get_skill_node(skill)
-    node_id = "skill_#{skill.id}"
-    node_parent = "category_#{skill.skill_category.id}"
+  protected
+    # Get skill category node data
+    def get_skill_category_node(category)
+      node_id = "category_#{category.id}"
+      node_parent = category.parent.nil? ? "#" : "category_#{category.parent_id}"
 
-    {
-      id: node_id,
-      text: skill.name,
-      parent: node_parent,
-      icon: "glyphicon glyphicon-leaf",
-      a_attr: {
-        edit_path: edit_skill_category_skill_path(id: skill, skill_category_id: skill.skill_category),
-        delete_path: skill_category_skill_path(id: skill, skill_category_id: skill.skill_category)
+      {
+        id: node_id,
+        text: category.name,
+        parent: node_parent,
+        icon: "glyphicon glyphicon-folder-close",
+        a_attr: {
+          new_children_path: new_skill_category_skill_path(category),
+          edit_path: edit_skill_category_path(category),
+          delete_path: skill_category_path(category)
+        }
       }
-    }
-  end
+    end
+
+    # Get skill node data
+    def get_skill_node(skill)
+      node_id = "skill_#{skill.id}"
+      node_parent = "category_#{skill.skill_category.id}"
+
+      {
+        id: node_id,
+        text: skill.name,
+        parent: node_parent,
+        icon: "glyphicon glyphicon-leaf",
+        a_attr: {
+          edit_path: edit_skill_category_skill_path(id: skill, skill_category_id: skill.skill_category),
+          delete_path: skill_category_skill_path(id: skill, skill_category_id: skill.skill_category)
+        }
+      }
+    end
+
+    # Get skill category node data - checked
+    def get_skill_category_node_checked(category)
+      node_id = "category_#{category.id}"
+      node_parent = category.parent.nil? ? "#" : "category_#{category.parent_id}"
+      {
+        id: node_id,
+        text: category.name,
+        parent: node_parent,
+        icon: "glyphicon glyphicon-folder-close",
+      }
+    end
+
+    # Get skill node data - checked
+    def get_skill_node_checked(skill, user_id)
+      user = User.find(user_id)
+      is_skill_in_user_skills = user.skills.pluck(:id).include?(skill.id)
+      node_parent = "category_#{skill.skill_category.id}"
+      {
+        id: skill.id,
+        text: skill.name,
+        parent: node_parent,
+        icon: "glyphicon glyphicon-leaf",
+        state: {
+          selected: is_skill_in_user_skills
+        }
+      }
+    end
 end

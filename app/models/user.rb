@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   belongs_to :location
   belongs_to :team
   has_many :qualifications, dependent: :destroy
-  has_and_belongs_to_many :skill_categories, join_table: :custom_users_skill_categories
+  has_and_belongs_to_many :skills, join_table: :users_skills
 
   def active_for_authentication?
     super && status?

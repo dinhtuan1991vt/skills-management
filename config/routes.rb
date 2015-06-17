@@ -9,11 +9,14 @@ Rails.application.routes.draw do
     resources :skills
   end
 
+  get 'users/:user_id/skill_categories' => 'skill_categories#user_skills', as: :user_skills
+
   resources :teams
   resources :roles
   resources :users do
     member do
       get 'custom_skill'
+      patch 'update_custom_skill'
     end
   end
   resources :qualifications
