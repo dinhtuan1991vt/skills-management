@@ -1,6 +1,15 @@
 %h3
   = t('.title')
 = form_for @user, url: update_custom_skill_user_path(@user), html: {class: "form-horizontal", id: "user-form"} do |f|
+
+  %div.static-info
+    %label.control-label=t('users.custom.user_name')
+    %span.control-label=@user.full_name
+
+  %div.static-info
+    %label.control-label=t('skill_cat')
+    %span.control-label=t('skill_cat_des')
+
   %div.form-group
     %div#skills-jstree-checked{"data-source" => user_skills_path(@user, format: "json")}
 

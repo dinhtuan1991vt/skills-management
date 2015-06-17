@@ -38,12 +38,12 @@ class UsersController < ApplicationController
   # Update user
   def update
     respond_to do |format|
-      if is_custom_skill_set
-        format.html { redirect_to custom_skill_user_path(@user)}
-      end
-
       if @user_service.update_user(@user, user_params)
-        format.html { redirect_to users_path, notice: I18n.t('users.index.update_notice') }
+        if is_custom_skill_set
+          format.html { redirect_to custom_skill_user_path(@user)}
+        else
+          format.html { redirect_to users_path, notice: I18n.t('users.index.update_notice') }
+        end
       else
         flash[:alert] = @user.errors.full_messages.to_sentence
         format.html { render :edit }

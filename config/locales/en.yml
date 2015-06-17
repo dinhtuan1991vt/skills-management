@@ -25,6 +25,8 @@ en:
   save: "Save"
   cancel: "Cancel"
   next: "Next"
+  skill_cat: "Skill Categories"
+  skill_cat_des: "Select the skill categories that apply to this team. Any categories that appear in gray are inherited from a parent team."
 
   skills:
     index:
@@ -41,6 +43,8 @@ en:
       title: "New skill"
     edit:
       title: "Edit skill"
+    custom:
+      user_name: "Username"
 
   skill_categories:
     index:

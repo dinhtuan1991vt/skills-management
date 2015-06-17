@@ -9,7 +9,7 @@
 admin = User.create!(first_name: "Admin", sur_name: "admin", email: "admin@localhost.com", password: "admin", password_confirmation: "admin", status: true)
 admin.add_role :admin
 
-user = User.create!(first_name: "Admin", sur_name: "admin", email: "user@localhost.com", password: "user", password_confirmation: "user", status: true)
+user = User.create!(first_name: "User", sur_name: "user", email: "user@localhost.com", password: "user", password_confirmation: "user", status: true)
 user.add_role :user
 
 SkillCategory.create!(name: :PHP)
