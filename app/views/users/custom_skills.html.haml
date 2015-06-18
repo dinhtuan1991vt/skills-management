@@ -1,0 +1,19 @@
+%h3
+  = t('.title')
+= form_for @user, url: update_custom_skills_user_path(@user), html: {class: "form-horizontal", id: "user-form"} do |f|
+
+  %div.form-group
+    %label.col-sm-2.control-label=t('users.custom.user_name')
+    %div.col-sm-4.control-label.left-text
+      %span=@user.full_name
+
+  %div.form-group
+    %label.col-sm-2.control-label=t('skill_cat')
+    %div.col-sm-4.control-label.left-text
+      %span=t('skill_cat_des')
+      %div#skills-jstree-check-only{"data-source" => user_skills_path(@user, format: "json")}
+
+  %div.form-group.control-area
+    %div.col-sm-offset-2.col-sm-4
+      = button_to t('save'), @user, {class: "btn btn-primary", id: "custom-user-skills-btn"}
+      = link_to t('cancel'), users_path, class: "btn btn-default"

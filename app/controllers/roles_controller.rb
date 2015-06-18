@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  load_and_authorize_resource except: [:create]
+  load_and_authorize_resource
   before_action :set_role, only: [:edit, :update, :destroy]
   before_action :load_role_service, only: [:create, :update, :destroy]
 
@@ -23,7 +23,6 @@ class RolesController < ApplicationController
   # Create new role
   def create
     @role = Role.new(role_params)
-    authorize! :create, @role
 
     respond_to do |format|
       if @role_service.save_role(@role)
@@ -63,7 +62,7 @@ class RolesController < ApplicationController
     def role_params
       params.require(:role).permit(:name)
     end
-    
+
     # Load role service
     def load_role_service
       @role_service = RoleService.new

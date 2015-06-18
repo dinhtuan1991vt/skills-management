@@ -78,9 +78,9 @@ $(document).on 'page:change', ->
     ]
     'contextmenu': 'items': customMenu).on 'loaded.jstree', ->
 
-  $('#skills-jstree-checked').jstree(
+  $('#skills-jstree-check-only').jstree(
     'core':
-      'data': 'url': $('#skills-jstree-checked').data('source')
+      'data': 'url': $('#skills-jstree-check-only').data('source')
     'plugins': [
       'sort'
       'checkbox'
@@ -89,25 +89,32 @@ $(document).on 'page:change', ->
   $(this).jstree 'open_all'
   return
 
-$(document).ready ->
-  $('#skill-set-select').change ->
-    if (Number(this.value) == 3)
-      $('#skill-set-notice').css('display', 'block')
-      $('#submit-btn-edit-user').val(I18n.t('next'))
-    else
-      $('#skill-set-notice').css('display', 'none')
-      $('#submit-btn-edit-user').val(I18n.t('save'))
+updateCustomSkillSet = ->
+  if Number(@value) == 3
+    $('#skill-set-notice').css 'display', 'block'
+    $('#submit-btn-edit-user').val I18n.t('next')
+  else
+    $('#skill-set-notice').css 'display', 'none'
+    $('#submit-btn-edit-user').val I18n.t('save')
+  return
 
-  $('#custom-user-skill-btn').click (e) ->
+$(document).on 'ready page:load', ->
+  $('#skill-set-select').change updateCustomSkillSet
+
+  $('#custom-user-skills-btn').click (e) ->
     e.preventDefault()
-    arr = $('#skills-jstree-checked').jstree(true).get_checked(false)
-    url_var = $("#user-form").attr("action")
+    node_ids = $('#skills-jstree-check-only').jstree(true).get_checked(false)
+    user_url = $("#user-form").attr("action")
     $.ajax
-      url: $("#user-form").attr("action")
+      url: user_url
       type: 'PATCH'
       dataType: 'json'
-      data: {"arr_ids":arr}
+      data: {"skill_ids":node_ids}
       success: (result) ->
         window.location.href = result.href
     return
+
+  $('#custom-team-skill-btn').click ->
+    node_ids = $('#skills-jstree-check-only').jstree(true).get_checked(false)
+    $('#team_skill_ids').attr("value", node_ids)
 

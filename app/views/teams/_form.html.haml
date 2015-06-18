@@ -1,4 +1,5 @@
 = form_for @team , html: {class: "form-horizontal", id: "team-form"} do |f|
+  %input{id: :team_skill_ids, type: "hidden", name: "team[skill_ids]"}
   %div.form-group
     = f.label :name, t('teams.index.name'), class: "col-sm-2 control-label"
     %div.col-sm-4
@@ -10,6 +11,12 @@
       = collection_select(:team, :parent_id, Team.all, :id, :name, {selected: @team.parent_id, prompt: true}, {class: "form-control"})
 
   %div.form-group
+    %label.col-sm-2.control-label=t('skill_cat')
+    %div.col-sm-4.control-label.left-text
+      %span=t('skill_cat_des')
+      %div#skills-jstree-check-only{"data-source" => datalink}
+
+  %div.form-group.control-area
     %div.col-sm-offset-2.col-sm-4
-      = button_to t('save'), @team, class: "btn btn-primary"
+      = button_to t('save'), @team, {class: "btn btn-primary", id: "custom-team-skill-btn"}
       = link_to t('cancel'), teams_path, class: "btn btn-default"

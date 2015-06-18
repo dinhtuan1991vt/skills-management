@@ -1,11 +1,17 @@
 class Ability
   include CanCan::Ability
 
+  # Config authorization
+  # Follow this page http://wiki.skills-base.com/index.php?title=Security
   def initialize(user)
-    if user.has_role? :admin
+    if user.has_role? :Admin
       can :manage, :all
-    else
-      can :read, :all
+    elsif user.has_role? :Supervisor
+      can :index, [Location, QualificationsDatatable, Skill, SkillCategory, Team]
+      can :manage, User
+    elsif user.has_role? :GeneralStaff
+      can :index, [Location, QualificationsDatatable, Skill, SkillCategory, Team]
+      can :manage, User, id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

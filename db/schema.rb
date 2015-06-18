@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616070111) do
+ActiveRecord::Schema.define(version: 20150618112652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20150616070111) do
 
   add_index "assesses", ["skill_id"], name: "index_assesses_on_skill_id", using: :btree
   add_index "assesses", ["user_id"], name: "index_assesses_on_user_id", using: :btree
+
+  create_table "custom_users_skill_categories", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "skill_category_id"
+  end
+
+  add_index "custom_users_skill_categories", ["skill_category_id"], name: "index_custom_users_skill_categories_on_skill_category_id", using: :btree
+  add_index "custom_users_skill_categories", ["user_id"], name: "index_custom_users_skill_categories_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string  "name"
@@ -42,6 +50,12 @@ ActiveRecord::Schema.define(version: 20150616070111) do
   end
 
   add_index "qualifications", ["user_id"], name: "index_qualifications_on_user_id", using: :btree
+
+  create_table "ranks", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -72,6 +86,14 @@ ActiveRecord::Schema.define(version: 20150616070111) do
     t.integer "parent_id"
   end
 
+  create_table "teams_skills", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "skill_id"
+  end
+
+  add_index "teams_skills", ["skill_id"], name: "index_teams_skills_on_skill_id", using: :btree
+  add_index "teams_skills", ["team_id"], name: "index_teams_skills_on_team_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -91,10 +113,12 @@ ActiveRecord::Schema.define(version: 20150616070111) do
     t.string   "sur_name"
     t.boolean  "status"
     t.integer  "skill_set"
+    t.integer  "rank_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
+  add_index "users", ["rank_id"], name: "index_users_on_rank_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
@@ -115,7 +139,10 @@ ActiveRecord::Schema.define(version: 20150616070111) do
 
   add_foreign_key "qualifications", "users"
   add_foreign_key "skills", "skill_categories"
+  add_foreign_key "teams_skills", "skills"
+  add_foreign_key "teams_skills", "teams"
   add_foreign_key "users", "locations"
+  add_foreign_key "users", "ranks"
   add_foreign_key "users", "teams"
   add_foreign_key "users_skills", "skills"
   add_foreign_key "users_skills", "users"

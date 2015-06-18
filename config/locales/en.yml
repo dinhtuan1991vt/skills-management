@@ -25,6 +25,8 @@ en:
   save: "Save"
   cancel: "Cancel"
   next: "Next"
+  skill_cat: "Skill Categories"
+  skill_cat_des: "Select the skill categories"
 
   skills:
     index:
@@ -41,6 +43,8 @@ en:
       title: "New skill"
     edit:
       title: "Edit skill"
+    custom:
+      user_name: "Username"
 
   skill_categories:
     index:
@@ -131,7 +135,7 @@ en:
     edit:
       title: "Edit user"
       custom_skill: "You will specify the skill categories in the next step."
-    custom_skill:
+    custom_skills:
       title: "Custom Skill"
 
   locations:

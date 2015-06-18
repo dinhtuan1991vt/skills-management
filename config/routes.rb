@@ -7,16 +7,20 @@ Rails.application.routes.draw do
 
   resources :skill_categories do
     resources :skills
+    collection do
+      get 'pure_hierachy'
+    end
   end
 
   get 'users/:user_id/skill_categories' => 'skill_categories#user_skills', as: :user_skills
+  get 'teams/:team_id/skill_categories' => 'skill_categories#team_skills', as: :team_skills
 
   resources :teams
   resources :roles
   resources :users do
     member do
-      get 'custom_skill'
-      patch 'update_custom_skill'
+      get 'custom_skills'
+      patch 'update_custom_skills'
     end
   end
   resources :qualifications
