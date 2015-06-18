@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :first_name, :sur_name, presence: true
   belongs_to :location
   belongs_to :team
+  belongs_to :rank
   has_many :qualifications, dependent: :destroy
   has_and_belongs_to_many :skills, join_table: :users_skills
   has_and_belongs_to_many :roles, join_table: :users_roles

@@ -27,3 +27,9 @@ Skill.create!(name: :Rails,     description: "last R in ROR", skill_category_id:
 
 Team.create!(name: :JOTO)
 Team.create!(name: :MyID)
+
+Rank.create!(name: "Accountant")
+Rank.create!(name: "General Manager")
+Rank.create!(name: "Legal Counsel")
+Rank.create!(name: "Senior Accountant")
+Rank.create!(name: "Senior Legal Counsel")

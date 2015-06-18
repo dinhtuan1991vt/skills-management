@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617065703) do
+ActiveRecord::Schema.define(version: 20150618112652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 20150617065703) do
   end
 
   add_index "qualifications", ["user_id"], name: "index_qualifications_on_user_id", using: :btree
+
+  create_table "ranks", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -107,10 +113,12 @@ ActiveRecord::Schema.define(version: 20150617065703) do
     t.string   "sur_name"
     t.boolean  "status"
     t.integer  "skill_set"
+    t.integer  "rank_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
+  add_index "users", ["rank_id"], name: "index_users_on_rank_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
 
@@ -134,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150617065703) do
   add_foreign_key "teams_skills", "skills"
   add_foreign_key "teams_skills", "teams"
   add_foreign_key "users", "locations"
+  add_foreign_key "users", "ranks"
   add_foreign_key "users", "teams"
   add_foreign_key "users_skills", "skills"
   add_foreign_key "users_skills", "users"
