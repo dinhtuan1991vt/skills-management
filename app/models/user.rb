@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :team
   has_many :qualifications, dependent: :destroy
   has_and_belongs_to_many :skills, join_table: :users_skills
+  has_and_belongs_to_many :roles, join_table: :users_roles
 
   def active_for_authentication?
     super && status?

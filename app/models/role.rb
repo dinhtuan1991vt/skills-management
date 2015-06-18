@@ -7,4 +7,12 @@ class Role < ActiveRecord::Base
             :allow_nil => true
   validates :name, presence: true
   scopify
+
+  # Get types of roles
+  # Follow this page http://wiki.skills-base.com/index.php?title=Security
+  def self.roles
+    [['Admin', 'Admin'],
+    ['Supervisor', 'Supervisor'],
+    ['General Staff', 'GeneralStaff']]
+  end
 end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource except: [:create]
+  load_and_authorize_resource
   before_action :set_user, only: [:edit, :update, :destroy]
   before_action :load_user_service, only: [:create, :update, :destroy, :update_custom_skills]
 
@@ -23,7 +23,6 @@ class UsersController < ApplicationController
   # Create new user
   def create
     @user = User.new(user_params)
-    authorize! :create, @user
 
     respond_to do |format|
       if @user_service.save_user(@user)

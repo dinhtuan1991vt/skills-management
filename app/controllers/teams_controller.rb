@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
+  load_and_authorize_resource
 	before_action :set_team, only: [:edit, :update, :destroy]
 	before_action :load_team_service, only: [:create, :update, :destroy]
-	load_and_authorize_resource except: [:create]
 
 	# Show teams
 	def index
@@ -19,12 +19,11 @@ class TeamsController < ApplicationController
 	# Create new team
 	def create
 		@team = Team.new(team_params)
-		authorize! :create, @team
 
 		respond_to do |format|
 			format.json {  }
 			if @team_service.save_team(@team) &&
-        @team_service.update_team_skills(@team, get_skill_ids_arr)
+        @team_service.update_team_skills(@team, skill_ids)
 				format.html { redirect_to teams_path, notice: I18n.t('teams.index.create_notice') }
 			else
 				format.html { render :new }
@@ -36,7 +35,7 @@ class TeamsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @team_service.update_team(@team, team_params) &&
-         @team_service.update_team_skills(@team, get_skill_ids_arr)
+         @team_service.update_team_skills(@team, skill_ids)
 				  format.html { redirect_to teams_path, notice: I18n.t('teams.index.update_notice') }
 			else
 				format.html { render :edit }
@@ -60,7 +59,7 @@ class TeamsController < ApplicationController
 
 		# Get params
 		def team_params
-			params.require(:team).permit(:name, :parent_id, :skill_ids)
+			params.require(:team).permit(:name, :parent_id)
 		end
 
 		# Load service
@@ -69,8 +68,8 @@ class TeamsController < ApplicationController
 		end
 
     # Get skill-ids array
-    def get_skill_ids_arr
-      team_params[:skill_ids].split(",")
+    def skill_ids
+      params.require(:team)[:skill_ids].split(",")
     end
 
 end

@@ -1,5 +1,5 @@
 class SkillsController < ApplicationController
-  load_and_authorize_resource except: [:create]
+  load_and_authorize_resource
   before_action :set_skill, only: [:edit, :update, :destroy]
   before_action :set_category
   before_action :load_skill_service, only: [:create, :update, :destroy]
@@ -19,7 +19,6 @@ class SkillsController < ApplicationController
   # Create new skill in category
   def create
     @skill = @category.skills.build(skill_params)
-    authorize! :create, @skill
 
     respond_to do |format|
       if @skill_service.save_skill(@skill)

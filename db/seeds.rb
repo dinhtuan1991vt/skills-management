@@ -6,11 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = User.create!(first_name: "Admin", sur_name: "admin", email: "admin@localhost.com", password: "admin", password_confirmation: "admin", status: true)
-admin.add_role :admin
+admin = User.create!(first_name: "John", sur_name: "Admin", email: "admin@localhost.com", password: "admin", password_confirmation: "admin", status: true)
+admin.add_role :Admin
 
-user = User.create!(first_name: "User", sur_name: "user", email: "user@localhost.com", password: "user", password_confirmation: "user", status: true)
-user.add_role :user
+supervisor = User.create!(first_name: "Marry", sur_name: "Supervisor", email: "supervisor@localhost.com", password: "supervisor", password_confirmation: "supervisor", status: true)
+supervisor.add_role :Supervisor
+
+general_staff = User.create!(first_name: "Hank", sur_name: "General Staff", email: "general.staff@localhost.com", password: "generalstaff", password_confirmation: "generalstaff", status: true)
+general_staff.add_role :GeneralStaff
 
 SkillCategory.create!(name: :PHP)
 SkillCategory.create!(name: :Ruby)
@@ -19,3 +22,8 @@ Skill.create!(name: :Linux,   description: "L in LAMP", skill_category_id: 1)
 Skill.create!(name: :Apache,  description: "A in LAMP", skill_category_id: 1)
 Skill.create!(name: :MySQL,   description: "M in LAMP", skill_category_id: 1)
 Skill.create!(name: :PHP,     description: "P in LAMP", skill_category_id: 1)
+Skill.create!(name: :Ruby,     description: "first R in ROR", skill_category_id: 2)
+Skill.create!(name: :Rails,     description: "last R in ROR", skill_category_id: 2)
+
+Team.create!(name: :JOTO)
+Team.create!(name: :MyID)

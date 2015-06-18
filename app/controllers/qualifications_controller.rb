@@ -1,5 +1,5 @@
 class QualificationsController < ApplicationController
-  load_and_authorize_resource except: [:create]
+  load_and_authorize_resource
   before_action :set_qualification, only: [:edit, :update, :destroy]
   before_action :load_qualification_service, only: [:create, :update, :destroy]
 
@@ -23,7 +23,6 @@ class QualificationsController < ApplicationController
   # Create new qualification
   def create
     @qualification = Qualification.new(qualification_params)
-    authorize! :create, @qualification
 
     respond_to do |format|
       if @qualification_service.save_qualification(@qualification)
