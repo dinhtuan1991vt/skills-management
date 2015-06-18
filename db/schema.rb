@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618112652) do
+ActiveRecord::Schema.define(version: 20150618145920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,6 @@ ActiveRecord::Schema.define(version: 20150618112652) do
 
   add_index "assesses", ["skill_id"], name: "index_assesses_on_skill_id", using: :btree
   add_index "assesses", ["user_id"], name: "index_assesses_on_user_id", using: :btree
-
-  create_table "custom_users_skill_categories", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "skill_category_id"
-  end
-
-  add_index "custom_users_skill_categories", ["skill_category_id"], name: "index_custom_users_skill_categories_on_skill_category_id", using: :btree
-  add_index "custom_users_skill_categories", ["user_id"], name: "index_custom_users_skill_categories_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string  "name"
@@ -56,6 +48,14 @@ ActiveRecord::Schema.define(version: 20150618112652) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "ranks_skills", id: false, force: :cascade do |t|
+    t.integer "rank_id"
+    t.integer "skill_id"
+  end
+
+  add_index "ranks_skills", ["rank_id"], name: "index_ranks_skills_on_rank_id", using: :btree
+  add_index "ranks_skills", ["skill_id"], name: "index_ranks_skills_on_skill_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(version: 20150618112652) do
   add_index "users_skills", ["user_id"], name: "index_users_skills_on_user_id", using: :btree
 
   add_foreign_key "qualifications", "users"
+  add_foreign_key "ranks_skills", "ranks"
+  add_foreign_key "ranks_skills", "skills"
   add_foreign_key "skills", "skill_categories"
   add_foreign_key "teams_skills", "skills"
   add_foreign_key "teams_skills", "teams"

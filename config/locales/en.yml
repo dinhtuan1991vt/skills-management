@@ -155,3 +155,17 @@ en:
     edit:
       title: "Edit location"
 
+  ranks:
+    index:
+      title: "Ranks"
+      create: "Add a new rank"
+      name: "Name"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this rank?"
+      create_notice: "Rank was successfully created."
+      update_notice: "Rank was successfully updated."
+      destroy_notice: "Rank was successfully deleted."
+    new:
+      title: "New rank"
+    edit:
+      title: "Edit rank"

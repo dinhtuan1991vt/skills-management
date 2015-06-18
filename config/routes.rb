@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'users/:user_id/skill_categories' => 'skill_categories#user_skills', as: :user_skills
   get 'teams/:team_id/skill_categories' => 'skill_categories#team_skills', as: :team_skills
+  get 'ranks/:rank_id/skill_categories' => 'skill_categories#rank_skills', as: :rank_skills
 
   resources :teams
   resources :roles
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
     end
   end
   resources :qualifications
+  resources :ranks
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

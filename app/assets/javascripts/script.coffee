@@ -54,6 +54,8 @@ $(document).on 'page:change', ->
 
   $('#role-form').validate()
 
+  $('#rank-form').validate()
+
   $('#user-form').validate rules: 'user[password_confirmation]': equalTo: '#user_password'
 
   $('#qualification-form').validate()
@@ -64,6 +66,7 @@ $(document).on 'page:change', ->
   setDatatable '#roles-table'
   setDatatable '#users-table'
   setDatatable '#qualifications-table'
+  setDatatable '#ranks-table'
 
 
   $('#skills-jstree').jstree(
@@ -89,6 +92,7 @@ $(document).on 'page:change', ->
   $(this).jstree 'open_all'
   return
 
+# common function
 updateCustomSkillSet = ->
   if Number(@value) == 3
     $('#skill-set-notice').css 'display', 'block'
@@ -114,7 +118,11 @@ $(document).on 'ready page:load', ->
         window.location.href = result.href
     return
 
-  $('#custom-team-skill-btn').click ->
+  $('#custom-team-skills-btn').click ->
     node_ids = $('#skills-jstree-check-only').jstree(true).get_checked(false)
     $('#team_skill_ids').attr("value", node_ids)
+
+  $('#custom-rank-skills-btn').click ->
+    node_ids = $('#skills-jstree-check-only').jstree(true).get_checked(false)
+    $('#rank_skill_ids').attr("value", node_ids)
 

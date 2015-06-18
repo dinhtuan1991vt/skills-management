@@ -1,7 +1,7 @@
 class SkillCategoriesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
   before_action :set_category, only: [:edit, :update, :destroy]
-  before_action :load_skill_category_service, only: [:index, :create, :update, :destroy, :user_skills, :team_skills, :pure_hierachy]
+  before_action :load_skill_category_service, only: [:index, :create, :update, :destroy, :user_skills, :team_skills, :rank_skills, :pure_hierachy]
 
   # Show skill categories and skills
   def index
@@ -19,6 +19,7 @@ class SkillCategoriesController < ApplicationController
   # Create new skill category
   def create
     @category = SkillCategory.new(category_params)
+    authorize! :create, @category
 
     respond_to do |format|
       if @skill_category_service.save_skill_category(@category)
@@ -56,10 +57,17 @@ class SkillCategoriesController < ApplicationController
     end
   end
 
-  # Get user skills categories
+  # Get team skills categories
   def team_skills
     respond_to do |format|
-      format.json { render json: @skill_category_service.get_hierarchy_checked(params[:team_id], SkillCategoryService::SKILL_SET_TYPES[:team_skill]) }
+      format.json { render json: @skill_category_service.get_hierarchy_checked(params[:team_id], SkillCategoryService::SKILL_SET_TYPES[:team_skills]) }
+    end
+  end
+
+  # Get rank skills categories
+  def rank_skills
+    respond_to do |format|
+      format.json { render json: @skill_category_service.get_hierarchy_checked(params[:rank_id], SkillCategoryService::SKILL_SET_TYPES[:rank_skills]) }
     end
   end
 

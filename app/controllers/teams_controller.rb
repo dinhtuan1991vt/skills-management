@@ -1,11 +1,11 @@
 class TeamsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create]
 	before_action :set_team, only: [:edit, :update, :destroy]
 	before_action :load_team_service, only: [:create, :update, :destroy]
 
 	# Show teams
 	def index
-		 respond_to do |format|
+		respond_to do |format|
 			format.html
 			format.json { render json: TeamsDatatable.new(view_context) }
 		end
@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
 	# Create new team
 	def create
 		@team = Team.new(team_params)
+    authorize! :create, @team
 
 		respond_to do |format|
 			format.json {  }
