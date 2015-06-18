@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_user, only: [:edit, :update, :destroy]
-  before_action :load_user_service, only: [:create, :update, :destroy, :update_custom_skill]
+  before_action :load_user_service, only: [:create, :update, :destroy, :update_custom_skills]
 
   # Show users
   def index
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user_service.update_user(@user, user_params)
         if is_custom_skill_set
-          format.html { redirect_to custom_skill_user_path(@user)}
+          format.html { redirect_to custom_skills_user_path(@user)}
         else
           format.html { redirect_to users_path, notice: I18n.t('users.index.update_notice') }
         end
@@ -59,15 +59,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # Custom skill
-  def custom_skill
+  # Get Custom skill form
+  def custom_skills
   end
 
   # Update custom skill
-  def update_custom_skill
+  def update_custom_skills
     respond_to do |format|
-      @user.skills.clear
-      skill_ids.each {|skill_id| @user.skills << Skill.find(skill_id)}
+      @user_service.update_user_skills(@user, params['skill_ids'])
       format.json { render json: {href: users_path} }
     end
   end
@@ -93,8 +92,4 @@ class UsersController < ApplicationController
       @user_service = UserService.new
     end
 
-    # Get skill ids
-    def skill_ids
-      params['arr_ids'].select {|skill_id| @user_service.is_id?(skill_id)}
-    end
 end

@@ -1,3 +1,3 @@
 %h3
   = t('.title')
-= render 'form'
+= render partial: 'form', locals: {datalink: pure_hierachy_skill_categories_path(format: "json")}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616070111) do
+ActiveRecord::Schema.define(version: 20150617065703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20150616070111) do
     t.integer "parent_id"
   end
 
+  create_table "teams_skills", id: false, force: :cascade do |t|
+    t.integer "team_id"
+    t.integer "skill_id"
+  end
+
+  add_index "teams_skills", ["skill_id"], name: "index_teams_skills_on_skill_id", using: :btree
+  add_index "teams_skills", ["team_id"], name: "index_teams_skills_on_team_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -115,6 +123,8 @@ ActiveRecord::Schema.define(version: 20150616070111) do
 
   add_foreign_key "qualifications", "users"
   add_foreign_key "skills", "skill_categories"
+  add_foreign_key "teams_skills", "skills"
+  add_foreign_key "teams_skills", "teams"
   add_foreign_key "users", "locations"
   add_foreign_key "users", "teams"
   add_foreign_key "users_skills", "skills"

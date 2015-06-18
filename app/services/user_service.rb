@@ -14,8 +14,11 @@ class UserService < BaseService
     user.destroy
   end
 
-  # Check is id?
-  def is_id?(id)
-    id.to_s == id.to_i.to_s
+  # Update user skills
+  def update_user_skills(user, skill_ids)
+    Skill.transaction do
+      user.skills.clear
+      skill_ids.each {|skill_id| user.skills << Skill.find(skill_id) if is_id?(skill_id) }
+    end
   end
 end
