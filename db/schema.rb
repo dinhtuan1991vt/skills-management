@@ -26,14 +26,6 @@ ActiveRecord::Schema.define(version: 20150618145920) do
   add_index "assesses", ["skill_id"], name: "index_assesses_on_skill_id", using: :btree
   add_index "assesses", ["user_id"], name: "index_assesses_on_user_id", using: :btree
 
-  create_table "custom_users_skill_categories", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "skill_category_id"
-  end
-
-  add_index "custom_users_skill_categories", ["skill_category_id"], name: "index_custom_users_skill_categories_on_skill_category_id", using: :btree
-  add_index "custom_users_skill_categories", ["user_id"], name: "index_custom_users_skill_categories_on_user_id", using: :btree
-
   create_table "locations", force: :cascade do |t|
     t.string  "name"
     t.decimal "latitude"

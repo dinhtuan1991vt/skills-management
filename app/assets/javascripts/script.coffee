@@ -91,7 +91,7 @@ $(document).on 'page:change', ->
 
   $(this).jstree 'open_all'
   return
-
+##########################################################
 # common function
 updateCustomSkillSet = ->
   if Number(@value) == 3
@@ -102,6 +102,12 @@ updateCustomSkillSet = ->
     $('#submit-btn-edit-user').val I18n.t('save')
   return
 
+setPosition = (_lat, _lon) ->
+  $('#location_latitude').val(_lat)
+  $('#location_longitude').val(_lon)
+  return
+
+##########################################################
 $(document).on 'ready page:load', ->
   $('#skill-set-select').change updateCustomSkillSet
 
@@ -126,3 +132,27 @@ $(document).on 'ready page:load', ->
     node_ids = $('#skills-jstree-check-only').jstree(true).get_checked(false)
     $('#rank_skill_ids').attr("value", node_ids)
 
+  # google map build
+  handler = Gmaps.build('Google')
+
+  displayOnMap = (position) ->
+    input_lat = $('#location_latitude').val()
+    input_lon = $('#location_longitude').val()
+    _lat = if input_lat == "" then position.coords.latitude else parseFloat(input_lat)
+    _lon = if input_lon == "" then position.coords.longitude else parseFloat(input_lon)
+    marker = handler.addMarker(
+      lat: _lat
+      lng: _lon
+      {draggable: true})
+    handler.map.centerOn marker
+    setPosition(_lat, _lon)
+    srvObj = marker.getServiceObject()
+    google.maps.event.addListener srvObj, 'dragend', (object) ->
+      setPosition(srvObj.position.k, srvObj.position.D)
+    return
+    return
+
+  handler.buildMap { internal: id: 'geolocation' }, ->
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition displayOnMap
+    return

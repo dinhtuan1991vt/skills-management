@@ -68,6 +68,7 @@ GEM
       railties (>= 3.2, < 5.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     haml (4.0.6)
       tilt
     i18n (0.7.0)
@@ -177,6 +178,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   font-awesome-rails
+  gmaps4rails
   haml (~> 4.0.6)
   i18n-js (>= 3.0.0.rc8)
   jbuilder (~> 2.0)
