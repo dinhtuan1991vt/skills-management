@@ -13,11 +13,8 @@ private
   # Map roles to data
   def data
     roles.map do |role|
-      edit_path = link_to(fa_icon('edit lg'), edit_role_path(role))
-      delete_path = link_to(fa_icon('trash-o lg'), role_path(role), method: :delete, data: { confirm: I18n.t('roles.index.delete_confirm') })
       [
         role.name,
-        "#{edit_path} #{delete_path}"
       ]
     end
   end

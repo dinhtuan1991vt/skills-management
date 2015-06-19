@@ -5,6 +5,8 @@ $color_mercury_approx: #e3e3e3;
 $white: #fff;
 $color_lochmara_approx: #08c;
 $color_gallery_approx: #eee;
+$color_nav_header: #888;
+$color_nav_divider: #D8D8D8;
 
 body {
   min-height: 2000px;
@@ -37,6 +39,7 @@ body {
 }
 
 .sidebar {
+  font-size: 13px;
   min-height: 20px;
   margin-bottom: 20px;
   background-color: $color_wild_sand_approx;
@@ -46,8 +49,10 @@ body {
     padding: 0;
     list-style: none;
     li {
-      text-indent: 20px;
-      line-height: 40px;
+      text-indent: 5px;
+      margin-left: 20px;
+      margin-right: 20px;
+      line-height: 25px;
       a {
         display: block;
         text-decoration: none;
@@ -94,4 +99,18 @@ body {
 
 .control-area{
   margin-top: 100px;
+}
+
+.nav-header {
+  margin-top: 15px;
+  color: $color_nav_header;
+  font-weight: bold;
+}
+
+.divider {
+  background-color: #E5E5E5;
+  border-bottom: 1px solid $color_nav_divider;
+  height: 1px;
+  margin-top: 15px;
+  overflow: hidden;
 }

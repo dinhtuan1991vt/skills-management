@@ -1,9 +1,15 @@
 .sidebar
   %ul
-    = render_menu_item(locations_path, t('locations.index.title'))
-    = render_menu_item(skill_categories_path, t('skills.index.title'))
-    = render_menu_item(teams_path, t('teams.index.title'))
-    = render_menu_item(roles_path, t('roles.index.title'))
+    %li.nav-header USERS
     = render_menu_item(users_path, t('users.index.title'))
-    = render_menu_item(qualifications_path, t('qualifications.index.title'))
+    %li.divider
+    %li.nav-header GROUPS
+    = render_menu_item(teams_path, t('teams.index.title'))
     = render_menu_item(ranks_path, t('ranks.index.title'))
+    = render_menu_item(skill_categories_path, t('skills.index.title'))
+    %li.divider
+    %li.nav-header INFOS
+    = render_menu_item(roles_path, t('roles.index.title'))
+    = render_menu_item(locations_path, t('locations.index.title'))
+    = render_menu_item(qualifications_path, t('qualifications.index.title'))
+    %li.divider

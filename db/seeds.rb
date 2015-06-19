@@ -33,3 +33,6 @@ Rank.create!(name: "General Manager")
 Rank.create!(name: "Legal Counsel")
 Rank.create!(name: "Senior Accountant")
 Rank.create!(name: "Senior Legal Counsel")
+
+Location.create!(name: "Ho Chi Minh", latitude: 10.8071409, longitude: 106.67040779999999)
+Location.create!(name: "Hong Kong", latitude: 23.01478161775026, longitude: 114.09716561250002)
