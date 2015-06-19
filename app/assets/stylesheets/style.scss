@@ -8,7 +8,8 @@ $color_gallery_approx: #eee;
 $color_nav_header: #888;
 $color_nav_divider: #D8D8D8;
 $color_home_button: #7387A6;
-$color_top_navbar: #DFDFDF;
+$color_top_navbar_background: #DADEFF;
+$color_box_shadow: #DFDFDF;
 
 body {
   min-height: 2000px;
@@ -46,6 +47,7 @@ body {
   margin-bottom: 20px;
   background-color: $color_wild_sand_approx;
   border: 1px solid $color_mercury_approx;
+  box-shadow: 5px 5px 5px $color_box_shadow;
   ul {
     margin: 0;
     padding: 0;
@@ -127,10 +129,5 @@ body {
 }
 
 #navbar{
-  background-color: $color_top_navbar;
-}
-
-.navbar:first{
-  padding-right: 0px;
-  padding-left: 0px;
+  background-color: $color_top_navbar_background;
 }

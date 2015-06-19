@@ -26,7 +26,8 @@ class UsersController < ApplicationController
     authorize! :create, @user
 
     respond_to do |format|
-      if @user_service.save_user(@user)
+      if @user_service.save_user(@user) &&
+          @user_service.set_role(@user, get_role)
         format.html { redirect_to users_path, notice: I18n.t('users.index.create_notice') }
       else
         flash[:alert] = @user.errors.full_messages.to_sentence
@@ -38,7 +39,8 @@ class UsersController < ApplicationController
   # Update user
   def update
     respond_to do |format|
-      if @user_service.update_user(@user, user_params)
+      if @user_service.update_user(@user, user_params) &&
+          @user_service.set_role(@user, get_role)
         if is_custom_skill_set
           format.html { redirect_to custom_skills_user_path(@user)}
         else
@@ -79,12 +81,16 @@ class UsersController < ApplicationController
 
     # Get params
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id, :skill_set)
+      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id, :skill_set, :rank_id)
     end
 
     # Check is next commit
     def is_custom_skill_set
       params[:user][:skill_set].to_i == 3
+    end
+
+    def get_role
+      params[:user][:roles]
     end
 
     # Load service
