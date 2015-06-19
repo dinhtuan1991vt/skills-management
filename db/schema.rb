@@ -11,19 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618145920) do
+ActiveRecord::Schema.define(version: 20150619092934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assesses", force: :cascade do |t|
-    t.integer "skill_id"
-    t.integer "score"
-    t.integer "user_id"
-    t.integer "supervisor_id"
+    t.integer  "user_id"
+    t.integer  "skill_id"
+    t.integer  "score"
+    t.integer  "supervisor_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "assesses", ["skill_id"], name: "index_assesses_on_skill_id", using: :btree
+  add_index "assesses", ["supervisor_id"], name: "index_assesses_on_supervisor_id", using: :btree
   add_index "assesses", ["user_id"], name: "index_assesses_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
@@ -137,6 +140,8 @@ ActiveRecord::Schema.define(version: 20150618145920) do
   add_index "users_skills", ["skill_id"], name: "index_users_skills_on_skill_id", using: :btree
   add_index "users_skills", ["user_id"], name: "index_users_skills_on_user_id", using: :btree
 
+  add_foreign_key "assesses", "skills"
+  add_foreign_key "assesses", "users"
   add_foreign_key "qualifications", "users"
   add_foreign_key "ranks_skills", "ranks"
   add_foreign_key "ranks_skills", "skills"

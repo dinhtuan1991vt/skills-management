@@ -36,3 +36,5 @@ Rank.create!(name: "Senior Legal Counsel")
 
 Location.create!(name: "Ho Chi Minh", latitude: 10.8071409, longitude: 106.67040779999999)
 Location.create!(name: "Hong Kong", latitude: 23.01478161775026, longitude: 114.09716561250002)
+
+Qualification.create!(name: "Microsoft Certificate", status: :completed, user_id: 2)

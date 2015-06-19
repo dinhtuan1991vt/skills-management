@@ -21,6 +21,13 @@
 
 en:
   title: "Skills Management"
+  user: "USER"
+  group: "GROUP"
+  info: "INFO"
+  assess: "ASSESS"
+  report: "REPORT"
+  security: "SECURITY"
+  search: "SEARCH"
   logout: "Log out"
   save: "Save"
   cancel: "Cancel"

@@ -1,5 +1,5 @@
 %h3
   = t('.title')
-= link_to t('.create'), new_skill_category_path, class: "btn btn-danger new-item"
+= link_to t('.create'), new_skill_category_path, class: "btn btn-info new-item"
 
 %div#skills-jstree{"data-source" => skill_categories_path(format: "json")}

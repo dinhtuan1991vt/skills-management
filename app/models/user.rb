@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :qualifications, dependent: :destroy
   has_and_belongs_to_many :skills, join_table: :users_skills
   has_and_belongs_to_many :roles, join_table: :users_roles
+  has_many :assesses, dependent: :destroy
 
   def active_for_authentication?
     super && status?
