@@ -7,6 +7,8 @@ $color_lochmara_approx: #08c;
 $color_gallery_approx: #eee;
 $color_nav_header: #888;
 $color_nav_divider: #D8D8D8;
+$color_home_button: #7387A6;
+$color_top_navbar: #DFDFDF;
 
 body {
   min-height: 2000px;
@@ -113,4 +115,22 @@ body {
   height: 1px;
   margin-top: 15px;
   overflow: hidden;
+}
+
+#home .navbar-brand {
+  margin-left: 30px;
+  color: $color_home_button;
+  font-size: 150%;
+  font-weight: bold;
+  font-style: italic;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#navbar{
+  background-color: $color_top_navbar;
+}
+
+.navbar:first{
+  padding-right: 0px;
+  padding-left: 0px;
 }
