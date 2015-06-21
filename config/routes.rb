@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   end
   resources :qualifications
   resources :ranks
+  get 'assesses/supervisor/:supervisor_id' => 'assesses#staffs', as: :assesses_staffs
+  get 'assesses/supervisor/:supervisor_id/staff/:staff_id' => 'assesses#details', as: :assesses_details
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

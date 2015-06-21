@@ -67,6 +67,7 @@ $(document).on 'page:change', ->
   setDatatable '#users-table'
   setDatatable '#qualifications-table'
   setDatatable '#ranks-table'
+  setDatatable '#assesses-table'
 
 
   $('#skills-jstree').jstree(

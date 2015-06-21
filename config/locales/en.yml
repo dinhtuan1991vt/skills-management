@@ -179,3 +179,13 @@ en:
       title: "New rank"
     edit:
       title: "Edit rank"
+
+  assesses:
+    staffs:
+      title: "Assesses"
+      email: "Email"
+      actions: "Actions"
+      create_notice: "Assess was successfully created."
+      update_notice: "Assess was successfully updated."
+    details:
+      title: "Assess staff"

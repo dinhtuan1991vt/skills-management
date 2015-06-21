@@ -4,6 +4,7 @@
     = render_menu_item(users_path, t('users.index.title'))
     %li.divider
     %li.nav-header=t('assess')
+    = render_menu_item(assesses_staffs_path(current_user), t('assesses.staffs.title'))
     %li.divider
     %li.nav-header=t('group')
     = render_menu_item(teams_path, t('teams.index.title'))
