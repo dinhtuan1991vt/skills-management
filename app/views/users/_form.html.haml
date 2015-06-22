@@ -7,12 +7,15 @@
   %div.form-group
     = f.label :password, t('users.index.password'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.password_field :password, class: "form-control", required: true
+      = f.password_field :password, class: "form-control"
 
   %div.form-group
     = f.label :password_confirmation, t('users.index.password_confirmation'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.password_field :password_confirmation, class: "form-control", required: true
+      = f.password_field :password_confirmation, class: "form-control"
+      %span=change_pass_label
+      =hidden_field_tag "user[change_password]", change_pass_value
+      =change_pass_check
 
   %div.form-group
     = f.label :first_name, t('users.index.first_name'), class: "col-sm-2 control-label"
@@ -42,7 +45,7 @@
   %div.form-group
     = f.label :roles, t('users.index.role'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = f.select :roles, Role.roles, {selected: @user.roles.first.name}, {class: "form-control"}
+      = f.select :roles, Role.roles, {selected: @user_service.get_role_selected(@user)}, {class: "form-control"}
 
   %div.form-group
     = f.label :status, t('users.index.status'), class: "col-sm-2 control-label"

@@ -140,6 +140,7 @@ en:
       create_notice: "User was successfully created."
       update_notice: "User was successfully updated."
       destroy_notice: "User was successfully deleted."
+      change-password: "Change password ?"
     new:
       title: "New user"
     edit:

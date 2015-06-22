@@ -1,3 +1,3 @@
 %h3
   = t('.title')
-= render 'form'
+= render partial: 'form', locals: {change_pass_label: t('users.index.change-password'), change_pass_check: check_box_tag("user[change_password]", 1, 0), change_pass_value: 0}
