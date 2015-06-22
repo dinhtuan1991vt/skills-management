@@ -35,6 +35,16 @@
       = collection_select(:user, :team_id, Team.all, :id, :name, {prompt: true}, {class: "form-control"})
 
   %div.form-group
+    = f.label :rank_id, t('users.index.rank'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = collection_select(:user, :rank_id, Rank.all, :id, :name, {prompt: true}, {class: "form-control"})
+
+  %div.form-group
+    = f.label :roles, t('users.index.role'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.select :roles, Role.roles, {selected: @user.roles.first.name}, {class: "form-control"}
+
+  %div.form-group
     = f.label :status, t('users.index.status'), class: "col-sm-2 control-label"
     %div.col-sm-4
       = f.select :status, User.statuses, {}, {class: "form-control"}

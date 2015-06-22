@@ -1,0 +1,17 @@
+= form_for @rank , html: {class: "form-horizontal", id: "rank-form"} do |f|
+  %input{id: :rank_skill_ids, type: "hidden", name: "rank[skill_ids]"}
+  %div.form-group
+    = f.label :name, t('ranks.index.name'), class: "col-sm-2 control-label"
+    %div.col-sm-4
+      = f.text_field :name, class: "form-control", required: true
+
+  %div.form-group
+    %label.col-sm-2.control-label=t('skill_cat')
+    %div.col-sm-4.control-label.left-text
+      %span=t('skill_cat_des')
+      %div#skills-jstree-check-only{"data-source" => datalink}
+
+  %div.form-group.control-area
+    %div.col-sm-offset-2.col-sm-4
+      = button_to t('save'), @rank, {class: "btn btn-primary", id: "custom-rank-skills-btn"}
+      = link_to t('cancel'), ranks_path, class: "btn btn-default"

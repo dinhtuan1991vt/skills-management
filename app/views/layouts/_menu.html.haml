@@ -1,8 +1,24 @@
 .sidebar
   %ul
-    = render_menu_item(locations_path, t('locations.index.title'))
-    = render_menu_item(skill_categories_path, t('skills.index.title'))
-    = render_menu_item(teams_path, t('teams.index.title'))
-    = render_menu_item(roles_path, t('roles.index.title'))
+    %li.nav-header=t('user')
     = render_menu_item(users_path, t('users.index.title'))
+    %li.divider
+    %li.nav-header=t('assess')
+    = render_menu_item(assesses_staffs_path(current_user), t('assesses.staffs.title'))
+    %li.divider
+    %li.nav-header=t('group')
+    = render_menu_item(teams_path, t('teams.index.title'))
+    = render_menu_item(ranks_path, t('ranks.index.title'))
+    = render_menu_item(skill_categories_path, t('skills.index.title'))
+    %li.divider
+    %li.nav-header=t('info')
+    = render_menu_item(locations_path, t('locations.index.title'))
     = render_menu_item(qualifications_path, t('qualifications.index.title'))
+    %li.divider
+    %li.nav-header=t('security')
+    = render_menu_item(roles_path, t('roles.index.title'))
+    %li.divider
+    %li.nav-header=t('search')
+    %li.divider
+    %li.nav-header=t('report')
+    %li.divider

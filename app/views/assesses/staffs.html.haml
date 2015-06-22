@@ -1,0 +1,10 @@
+%h3
+  = t('.title')
+
+%table.table.table-bordered.table-striped.responsive.no-wrap#assesses-table{"data-source" => assesses_staffs_path(@supervisor, format: "json")}
+  %thead
+    %tr
+      %th
+        = t('.email')
+      %th
+        = t('.actions')

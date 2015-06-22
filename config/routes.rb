@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'locations#index'
+  root 'teams#index'
 
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'users/:user_id/skill_categories' => 'skill_categories#user_skills', as: :user_skills
   get 'teams/:team_id/skill_categories' => 'skill_categories#team_skills', as: :team_skills
+  get 'ranks/:rank_id/skill_categories' => 'skill_categories#rank_skills', as: :rank_skills
 
   resources :teams
   resources :roles
@@ -24,6 +25,9 @@ Rails.application.routes.draw do
     end
   end
   resources :qualifications
+  resources :ranks
+  get 'assesses/supervisor/:supervisor_id' => 'assesses#staffs', as: :assesses_staffs
+  get 'assesses/supervisor/:supervisor_id/staff/:staff_id' => 'assesses#details', as: :assesses_details
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

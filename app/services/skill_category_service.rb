@@ -45,9 +45,9 @@ class SkillCategoryService < BaseService
   protected
     # Constant
     SKILL_SET_TYPES = {
-        all_skill: 0,
-        team_skill: 1,
-        role_skill: 2,
+        all_skills: 0,
+        team_skills: 1,
+        rank_skills: 2,
         custom: 3
     }
     # sub-class
@@ -110,9 +110,12 @@ class SkillCategoryService < BaseService
       when :custom
         user = User.find(id)
         is_checked = user.skills.pluck(:id).include?(skill.id)
-      when :team_skill
+      when :team_skills
         team = Team.find(id)
         is_checked = team.skills.pluck(:id).include?(skill.id)
+      when :rank_skills
+        rank = Rank.find(id)
+        is_checked = rank.skills.pluck(:id).include?(skill.id)
       end
 
       node_parent = "category_#{skill.skill_category.id}"

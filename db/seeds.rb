@@ -12,7 +12,7 @@ admin.add_role :Admin
 supervisor = User.create!(first_name: "Marry", sur_name: "Supervisor", email: "supervisor@localhost.com", password: "supervisor", password_confirmation: "supervisor", status: true)
 supervisor.add_role :Supervisor
 
-general_staff = User.create!(first_name: "Hank", sur_name: "General Staff", email: "general.staff@localhost.com", password: "generalstaff", password_confirmation: "generalstaff", status: true)
+general_staff = User.create!(first_name: "Hank", sur_name: "General Staff", email: "staff@localhost.com", password: "staff", password_confirmation: "staff", status: true)
 general_staff.add_role :GeneralStaff
 
 SkillCategory.create!(name: :PHP)
@@ -33,3 +33,8 @@ Rank.create!(name: "General Manager")
 Rank.create!(name: "Legal Counsel")
 Rank.create!(name: "Senior Accountant")
 Rank.create!(name: "Senior Legal Counsel")
+
+Location.create!(name: "Ho Chi Minh", latitude: 10.8071409, longitude: 106.67040779999999)
+Location.create!(name: "Hong Kong", latitude: 23.01478161775026, longitude: 114.09716561250002)
+
+Qualification.create!(name: "Microsoft Certificate", status: :completed, user_id: 2)

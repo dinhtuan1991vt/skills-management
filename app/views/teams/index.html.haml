@@ -1,6 +1,6 @@
 %h3
   = t('.title')
-= link_to t('.create'), new_team_path, class: "btn btn-danger new-item"
+= link_to t('.create'), new_team_path, class: "btn btn-info new-item"
 
 %table.table.table-bordered.table-striped.responsive.no-wrap#teams-table{"data-source" => teams_path(format: "json")}
   %thead

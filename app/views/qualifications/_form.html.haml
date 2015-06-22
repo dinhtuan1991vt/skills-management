@@ -12,7 +12,7 @@
   %div.form-group
     = f.label :user_id, t('qualifications.index.user'), class: "col-sm-2 control-label"
     %div.col-sm-4
-      = collection_select(:qualification, :user_id, User.all, :id, :email, {prompt: true}, {class: "form-control", required: true})
+      = collection_select(:qualification, :user_id, @qualification_service.get_users_can_be_add_qualification(current_user), :id, :email, {prompt: true}, {class: "form-control", required: true})
 
   %div.form-group
     = f.label :from_date, t('qualifications.index.from_date'), class: "col-sm-2 control-label"

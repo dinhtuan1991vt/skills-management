@@ -21,6 +21,13 @@
 
 en:
   title: "Skills Management"
+  user: "USER"
+  group: "GROUP"
+  info: "INFO"
+  assess: "ASSESS"
+  report: "REPORT"
+  security: "SECURITY"
+  search: "SEARCH"
   logout: "Log out"
   save: "Save"
   cancel: "Cancel"
@@ -123,7 +130,10 @@ en:
       sur_name: "Surname"
       location: "Location"
       team: "Team"
+      rank: "Rank"
+      role: "Role"
       status: "Status"
+      qualification: "Qualification"
       actions: "Actions"
       skill_set: "Skill set"
       delete_confirm: "Are you sure to delete this user?"
@@ -155,3 +165,28 @@ en:
     edit:
       title: "Edit location"
 
+  ranks:
+    index:
+      title: "Ranks"
+      create: "Add a new rank"
+      name: "Name"
+      actions: "Actions"
+      delete_confirm: "Are you sure to delete this rank?"
+      create_notice: "Rank was successfully created."
+      update_notice: "Rank was successfully updated."
+      destroy_notice: "Rank was successfully deleted."
+    new:
+      title: "New rank"
+    edit:
+      title: "Edit rank"
+
+  assesses:
+    staffs:
+      title: "Assesses"
+      email: "Email"
+      actions: "Actions"
+      assess-now: "Assess now >>"
+      create_notice: "Assess was successfully created."
+      update_notice: "Assess was successfully updated."
+    details:
+      title: "Assess staff"

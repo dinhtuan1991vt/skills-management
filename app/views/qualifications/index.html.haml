@@ -1,6 +1,6 @@
 %h3
   = t('.title')
-= link_to t('.create'), new_qualification_path, class: "btn btn-danger new-item"
+= link_to t('.create'), new_qualification_path, class: "btn btn-info new-item"
 
 %table.table.table-bordered.table-striped.responsive.no-wrap#qualifications-table{"data-source" => qualifications_path(format: "json")}
   %thead
