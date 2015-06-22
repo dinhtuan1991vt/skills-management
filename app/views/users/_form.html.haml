@@ -14,7 +14,7 @@
     %div.col-sm-4
       = f.password_field :password_confirmation, class: "form-control"
       %span=change_pass_label
-      =hidden_field_tag "user[change_password]", 0
+      =hidden_field_tag "user[change_password]", 1
       =change_pass_check
 
   %div.form-group
