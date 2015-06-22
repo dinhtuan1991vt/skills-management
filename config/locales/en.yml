@@ -185,6 +185,7 @@ en:
       title: "Assesses"
       email: "Email"
       actions: "Actions"
+      assess-now: "Access now >>"
       create_notice: "Assess was successfully created."
       update_notice: "Assess was successfully updated."
     details:

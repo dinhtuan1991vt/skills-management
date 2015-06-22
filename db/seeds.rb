@@ -12,7 +12,7 @@ admin.add_role :Admin
 supervisor = User.create!(first_name: "Marry", sur_name: "Supervisor", email: "supervisor@localhost.com", password: "supervisor", password_confirmation: "supervisor", status: true)
 supervisor.add_role :Supervisor
 
-general_staff = User.create!(first_name: "Hank", sur_name: "General Staff", email: "general.staff@localhost.com", password: "generalstaff", password_confirmation: "generalstaff", status: true)
+general_staff = User.create!(first_name: "Hank", sur_name: "General Staff", email: "staff@localhost.com", password: "staff", password_confirmation: "staff", status: true)
 general_staff.add_role :GeneralStaff
 
 SkillCategory.create!(name: :PHP)

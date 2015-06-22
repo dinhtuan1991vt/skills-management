@@ -1,5 +1,5 @@
 class AssessesDatatable < BaseDatatable
-  delegate :assesses_details_path, to: :@view
+  delegate :assesses_details_path, :t, to: :@view
 
   def initialize(view, supervisor)
     super(view)
@@ -21,7 +21,7 @@ private
   def data
     assesses.map do |assess|
       email = assess.user.email unless assess.user.nil?
-      details_path = link_to('Assess Now', assesses_details_path(@supervisor.id, assess.user.id), class: "btn btn-warning")
+      details_path = link_to(t('assesses.staffs.assess-now'), assesses_details_path(@supervisor.id, assess.user.id), class: "btn btn-warning")
         [
           email,
           "#{details_path}"

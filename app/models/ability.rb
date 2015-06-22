@@ -7,10 +7,12 @@ class Ability
     if user.has_role? :Admin
       can :manage, :all
     elsif user.has_role? :Supervisor
-      can :index, [Location, Qualification, Skill, SkillCategory, Team, Rank, Assess]
+      can :index, [Location, Qualification, Skill, SkillCategory, Team, Rank]
+      can :manage, Assess
       can :manage, User
     elsif user.has_role? :GeneralStaff
-      can :index, [Location, Qualification, Skill, SkillCategory, Team, Rank, Assess]
+      can :index, [Location, Qualification, Skill, SkillCategory, Team, Rank]
+      can :manage, Assess
       can :manage, User, id: user.id
     end
     # Define abilities for the passed in user here. For example:

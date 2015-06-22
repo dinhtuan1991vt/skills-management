@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'locations#index'
+  root 'teams#index'
 
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
