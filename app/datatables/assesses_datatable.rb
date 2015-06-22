@@ -4,7 +4,7 @@ class AssessesDatatable < BaseDatatable
   def initialize(view, supervisor)
     super(view)
     @supervisor = supervisor;
-    @assesses_count = Assess.select(:user_id).joins(:user).where(supervisor_id: @supervisor.id).distinct
+    @assesses_count = Assess.select(:user_id).joins(:user).where(supervisor_id: @supervisor.id).distinct.count
   end
 
   # Get result

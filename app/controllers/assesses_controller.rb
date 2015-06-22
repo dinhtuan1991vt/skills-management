@@ -19,23 +19,6 @@ class AssessesController < ApplicationController
   end
 
 
-  # Update assess
-  def update
-    respond_to do |format|
-      if @assess_service.update_assess(@assess, assess_params) &&
-          @assess_service.set_role(@assess, get_role)
-        if is_custom_skill_set
-          format.html { redirect_to custom_skills_assess_path(@assess)}
-        else
-          format.html { redirect_to assesses_path, notice: I18n.t('assesses.index.update_notice') }
-        end
-      else
-        flash[:alert] = @assess.errors.full_messages.to_sentence
-        format.html { render :edit }
-      end
-    end
-  end
-
   private
     # Set current assess
     def set_supervisor
@@ -47,11 +30,6 @@ class AssessesController < ApplicationController
       @staff = User.find(params[:staff_id])
     end
 
-
-    # Get params
-    def assess_params
-      params.require(:assess).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id, :skill_set, :rank_id)
-    end
     # Load service
     def load_assess_service
       @assess_service = AssessService.new

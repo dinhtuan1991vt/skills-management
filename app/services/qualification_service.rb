@@ -13,4 +13,13 @@ class QualificationService < BaseService
   def destroy_qualification(qualification)
     qualification.destroy
   end
+
+  # Get list of users can be add qualification
+  def get_users_can_be_add_qualification(current_user)
+    if current_user.has_role? :Admin
+      User.all
+    else
+      User.where(id: current_user.id)
+    end
+  end
 end
