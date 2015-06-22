@@ -1,7 +1,7 @@
 class QualificationsController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_qualification, only: [:edit, :update, :destroy]
-  before_action :load_qualification_service, only: [:create, :update, :destroy, :new]
+  before_action :load_qualification_service, only: [:create, :update, :destroy, :new, :edit]
 
   # Show qualifications
   def index

@@ -4,13 +4,13 @@ class AssessesDatatable < BaseDatatable
   def initialize(view, supervisor)
     super(view)
     @supervisor = supervisor;
-    @assesses_count = Assess.select(:user_id).joins(:user).where(supervisor_id: @supervisor.id).distinct.count
+    @total_records = Assess.select(:user_id).joins(:user).where(supervisor_id: @supervisor.id).distinct.size
   end
 
   # Get result
   def as_json(options = {})
     {
-      iTotalRecords: @assesses_count,
+      iTotalRecords: @total_records,
       iTotalDisplayRecords: assesses.total_entries,
       aaData: data
     }

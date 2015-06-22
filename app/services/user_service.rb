@@ -22,6 +22,15 @@ class UserService < BaseService
     end
   end
 
+  # get role selected
+  def get_role_selected(user)
+    unless user.new_record?
+      user.roles.first.name
+    else
+      Role.first.name
+    end
+  end
+
   # Set user role
   def set_role(user, role)
       # About role of rolify gem:

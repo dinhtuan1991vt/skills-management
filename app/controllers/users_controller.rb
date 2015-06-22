@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:create]
   before_action :set_user, only: [:edit, :update, :destroy]
-  before_action :load_user_service, only: [:create, :update, :destroy, :update_custom_skills]
+  before_action :load_user_service, only: [:new, :edit, :create, :update, :destroy, :update_custom_skills]
 
   # Show users
   def index
@@ -81,7 +81,13 @@ class UsersController < ApplicationController
 
     # Get params
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id, :skill_set, :rank_id)
+      params_filter = params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :sur_name, :location_id, :status, :team_id, :skill_set, :rank_id, :change_password)
+      if params_filter[:change_password] == "0"
+        params_filter.delete(:password)
+        params_filter.delete(:password_confirmation)
+      end
+      params_filter.delete(:change_password)
+      params_filter
     end
 
     # Check is next commit
